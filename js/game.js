@@ -42,7 +42,7 @@ var preview = {
     preview.addRole = $(".preAddRole");
     preview.isUpdate = true;
 
-    var stringCharacter = "<option>請選擇</option>";
+    var stringCharacter = "<option>선택하세요</option>";
     for (var type in girlsOptions) {
       stringCharacter+= '<optgroup label="' + type + '">';
       for (var name in girlsOptions[type]) {
@@ -85,10 +85,10 @@ var preview = {
     preview.stopRole.click(function(){
       if(preview.isUpdate){
         preview.isUpdate = false;
-        preview.stopRole.html("開始");
+        preview.stopRole.html("재생");
       }else{
         preview.isUpdate = true;
-        preview.stopRole.html("停止");
+        preview.stopRole.html("정지");
       }
     });
 
@@ -194,7 +194,7 @@ var gameview = {
     gameview.isUpdate = true;
     gameview.isShowFPS = true;
 
-    var stringBackground = "<option>空</option>";
+    var stringBackground = "<option>없음</option>";
     for(var i = 0;i < game.background.length; i++)
       stringBackground += "<option>" + game.background[i] + "</option>";
     gameview.selectBackground.html(stringBackground);
@@ -215,7 +215,7 @@ var gameview = {
       gameview.savePng();
     });
 
-    var stringCharacter = "<option>請選擇</option>";
+    var stringCharacter = "<option>선택하세요</option>";
     gameview.selectCharacter.html(stringCharacter);
 
     gameview.selectCharacter.change(function(){
@@ -362,7 +362,7 @@ var gameview = {
   changeBackground : function(n){
     if (n == 0 && gameview.background) {
       gameview.background.texture = PIXI.Texture.EMPTY;
-      gameview.background.filename = '空';
+      gameview.background.filename = '없음';
       return;
     }
     if (gameview.bgImage[n-1]) {
