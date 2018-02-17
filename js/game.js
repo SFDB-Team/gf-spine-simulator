@@ -46,7 +46,7 @@ var preview = {
     for (var type in girlsOptions) {
       stringCharacter+= '<optgroup label="' + type + '">';
       for (var name in girlsOptions[type]) {
-        var optionName = (girlsDataTw[name]) ? girlsDataTw[name].name : name;
+        var optionName = (girlsDataKr[name]) ? girlsDataKr[name].name : name;
         stringCharacter+= '<option value="' + name + '">' + optionName + '</option>';
       }
       stringCharacter+= '</optgroup>';
@@ -258,10 +258,10 @@ var gameview = {
     gameview.stopRole.click(function(){
       if(gameview.isUpdate){
         gameview.isUpdate = false;
-        gameview.stopRole.html("開始");
+        gameview.stopRole.html("재생");
       }else{
         gameview.isUpdate = true;
-        gameview.stopRole.html("停止");
+        gameview.stopRole.html("정지");
       }
     });
 
@@ -353,7 +353,7 @@ var gameview = {
         role.skeleton.setToSetupPose();
         role.update(0);
         role.autoUpdate = false;
-    var codeName = (girlsDataTw[skeletonData.code]) ? girlsDataTw[skeletonData.code].name : name;
+    var codeName = (girlsDataKr[skeletonData.code]) ? girlsDataKr[skeletonData.code].name : name;
     var stringCharacter = "<option>" + codeName + " " + name + "</option>";
     gameview.selectCharacter.append(stringCharacter);
     gameview.selectCharacter[0].selectedIndex = gameview.role.length;
