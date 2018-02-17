@@ -1,36 +1,38 @@
-# 少女前線Q版人形模擬器 Girls Front Line Spine Simulator
+# 소녀전선 인형 시뮬레이터
 
-![預覽](https://raw.githubusercontent.com/wsmwason/gf-spine-simulator/master/images/preview.png)
+![미리보기](https://raw.githubusercontent.com/wsmwason/gf-spine-simulator/master/images/preview.png)
 
-這個專案本來 fork 於 [cullus/gfSpinePiXi](https://github.com/cullus/gfSpinePiXi) 少女前线Q版模拟器，
-不過為了加上一些跟 [少女前線資料庫](https://gf.fws.tw/) 的整合 feature，
-已獲得原作者 [cullus](https://github.com/cullus) 同意以 MIT License Duplicate 獨立專案。
+이 프로젝트는 cullus 의 소녀전선Q시뮬레이터를 기반으로 만들어졌습니다.[cullus/gfSpinePiXi](https://github.com/cullus/gfSpinePiXi)
+그러나 일부 기능을 더 추가하기 위해서 [소녀전선 DB](https://gf.fws.tw/) 를 통합시켰습니다.
+MIT License Duplicate 에 의해 동일한 권한을 얻었습니다.[cullus](https://github.com/cullus)
 
 ## gf-spine-simulator
 
- * 整合版預覽網址 https://gf.fws.tw/db/guns/simulator
- * 原始修改版預覽網址 https://gf.fws.tw/gf-spine-simulator/
+ * 통합 미리보기 URL (중국어) https://gf.fws.tw/db/guns/simulator
+ * 수정된 변경본 URL (중국어) https://gf.fws.tw/gf-spine-simulator/
+ * 통합 미리보기 URL (한국어 번역) https://girlsfrontline.kr/db/simulator
 
-## Install Bower Dependencies
+
+## 종속성 문제를 위해 bower 설치 필요 
 
 ```
 bower install
 ```
 
-## 整合版的功能
+## 통합기능
 
- * 分享並儲存自己設定的角色
- * 針對分享的內容評論
+ * 나만의 캐릭터 설정 공유 및 저장 가능
+ * 공유한 콘텐츠에 댓글 달기
 
-## 原始修改版主要功能
+## 수정된 버전의 주요 기능
 
- * 收錄 `大部份` 槍娘的Q版動作
- * 僅是模擬，和遊戲中動作不一定完全相同
- * UI 介面調整
- * 槍娘顯示翻譯名稱
- * 儲存圖片功能
- * 分享功能
+ * 기본적인 버전에 포함된 대부분의 액션 기능이 포함되어 있습니다.
+ * 기본적인 기능의 시뮬레이션, 단 모든 행동이 게임과 완벽하게 일치한다는 보장은 아닙니다.
+ * UI Interface 조정
+ * 현지화 번역
+ * 이미지 저장 기능
+ * URL 공유 기능
 
 ## License
 
-MIT
+MIT License Duplicate
