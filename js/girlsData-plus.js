@@ -523,5 +523,8 @@ var girlsDataKr = {
     },
     "GG": { //엘펠트
         "name": "\uC5D8\uD3A0\uD2B8"
+    },
+    "S.A.T.8": { //SAT8
+	"name": "S.A.T.8"
     }
 };

@@ -32,7 +32,8 @@ var girlsData = {
     "56typeR": {
         "56typeR": [],
         "R56typeR": {
-            "atlas": "56typeR"
+		"png": "56typeR", //56식 반 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
+		"atlas": "56typeR"
         }
     },
     "59type": {
@@ -64,7 +65,8 @@ var girlsData = {
     "79type": {
         "79type": [],
         "R79type": {
-            "atlas": "79type"
+		"png": "79type", //79식 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
+		"atlas": "79type"
         }
     },
     "81typeR": {
@@ -408,7 +410,8 @@ var girlsData = {
     "G41": {
         "G41": [],
         "RG41": {
-            "atlas": "G41"
+		"png": "G41", //G41 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
+		"atlas": "G41"
         }
     },
     "G43": {
@@ -500,7 +503,8 @@ var girlsData = {
     "IWS2000": {
         "IWS2000": [],
         "RIWS2000": {
-            "atlas": "IWS2000"
+		"png": "IWS2000", //IWS2000 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
+		"atlas": "IWS2000"
         }
     },
     "Jaeger": {
@@ -1189,8 +1193,15 @@ var girlsData = {
     },
     "WeaverElite": {
         "WeaverElite": []
+    },
+    "S.A.T.8": { //SAT8 02.24 추가
+	"SAT8": [],
+	"RSAT8": [],
+	"SAT8_1802": [],
+	"RSAT8_1802": []
     }
 };
+
 var girlsOptions = {
     "\uAE30\uD0C0": { //기타
         "Aegis": "Aegis",
@@ -1412,7 +1423,8 @@ var girlsOptions = {
         "RMB93": "RMB-93",
         "SPAS12": "SPAS-12",
         "SAIGA12": "Saiga-12",
-        "SuperShorty": "Super-Shorty"
+        "SuperShorty": "Super-Shorty",
+	"S.A.T.8": "S.A.T.8"
     },
     "\uAE30\uAD00\uCD1D MG": { //기관총
         "AAT52": "AAT-52",
