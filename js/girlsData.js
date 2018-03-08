@@ -25,7 +25,7 @@ var girlsData = {
         "56-1type": [],
         "56-1type_401": [],
         "R56-1type": {
-			"png": "56-1type" //56-1type R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
+			"png": "56-1type", //56-1type R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "56-1type"
         },
         "R56-1type_401": []
@@ -150,7 +150,7 @@ var girlsData = {
     "APS": {
         "APS": [],
         "RAPS": {
-			"png": "APS" //APS R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
+			"png": "APS", //APS R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "APS"
         }
     },
