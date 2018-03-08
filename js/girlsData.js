@@ -58,7 +58,7 @@ var girlsData = {
         "R64type_104": [],
         "R64type_11": []
     },
-	"64typeMod" { //18.03.09 신규추가 64식 개장
+	"64typeMod": { //18.03.09 신규추가 64식 개장
 		"64typeMod": [],
 		"R64typeMod": []		
 	},
