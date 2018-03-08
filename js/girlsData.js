@@ -128,6 +128,7 @@ var girlsData = {
     "AEK999": {
         "AEK999": [],
         "RAEK999": {
+			"png": "AEK999", //AEK999 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "AEK999"
         }
     },
@@ -621,6 +622,7 @@ var girlsData = {
     "M1897": {
         "M1897": [],
         "RM1897": {
+			"png": "M1897", //M1897 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "M1897"
         }
     },
@@ -631,6 +633,7 @@ var girlsData = {
         "M1903_5": [],
         "M1903_802": [],
         "RM1903": {
+			"png": "M1903", //M1903 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "M1903"
         },
         "RM1903_1107": [],
@@ -740,6 +743,7 @@ var girlsData = {
         "M99_404": [],
         "RM99": [],
         "RM99_404": {
+			"png": "M99_404", //M99 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "M99_404"
         }
     },
@@ -804,9 +808,11 @@ var girlsData = {
         "MLEMK1_901": [],
         "RMLEMK1": [],
         "RMLEMK1_10": {
+			"png": "MLEMK1_10", //MLEMK1 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "MLEMK1_10"
         },
         "RMLEMK1_604": {
+			"png": "MLEMK1_604", //MLEMK1 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "MLEMK1_604"
         },
         "RMLEMK1_901": []
@@ -916,6 +922,7 @@ var girlsData = {
         "PK_605": [],
         "RPK": [],
         "RPK_605": {
+			"png": "PK_605", //PK R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "PK_605"
         }
     },
@@ -959,6 +966,7 @@ var girlsData = {
         "PPsh41_602": [],
         "RPPsh41": [],
         "RPPsh41_602": {
+			"png": "PPsh41_602", //PPsh41 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "PPsh41_602"
         }
     },
