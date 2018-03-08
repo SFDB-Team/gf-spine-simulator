@@ -524,7 +524,31 @@ var girlsDataKr = {
     "GG": { //엘펠트
         "name": "\uC5D8\uD3A0\uD2B8"
     },
-    "S.A.T.8": { //SAT8
+    "S.A.T.8": {
 	"name": "S.A.T.8"
-    }
+    },
+	"64typeMod": { //64식 개장
+		"name": "64type \uAC1C\uC7A5"
+	},
+	"AK12": {
+		"name": "AK12"
+	},
+	"AN94": {
+		"name": "AN94"
+	},
+	"AR15Mod": { //6ㄱ식 개장
+		"name": "ST AR-15 \uAC1C\uC7A5"
+	},
+	"FN49Mod": { //FN49 개장
+		"name": "FN-49 \uAC1C\uC7A5"
+	},
+	"IDWMod": { //IDW 개장
+		"name": "IDW \uAC1C\uC7A5"
+	},
+	"M4A1Mod": { //M4A1 개장
+		"name": "M4A1 개장"
+	},
+	"M1911Mod": { //M1911 개장
+		"name": "M1911 \uAC1C\uC7A5"
+	}
 };

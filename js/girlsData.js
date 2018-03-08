@@ -58,6 +58,10 @@ var girlsData = {
         "R64type_104": [],
         "R64type_11": []
     },
+	"64typeMod" { //18.03.09 신규추가 64식 개장
+		"64typeMod": [],
+		"R64typeMod": []		
+	},
     "6P62": {
         "6P62": [],
         "6P62_704": [],
@@ -132,6 +136,10 @@ var girlsData = {
             "atlas": "AEK999"
         }
     },
+	"AK12": { //18.03.09 신규추가 AK12
+		"AK12": [],
+		"RAK12": []
+	},
     "AK47": {
         "AK47": [],
         "AK47_501": [],
@@ -148,6 +156,10 @@ var girlsData = {
             "atlas": "Ameli"
         }
     },
+	"AN94": { //18.03.09 신규추가 AN94
+		"AN94": [],
+		"RAN94": []
+	},
     "APS": {
         "APS": [],
         "RAPS": {
@@ -167,6 +179,10 @@ var girlsData = {
             "atlas": "AR15_701"
         }
     },
+	"AR15Mod": { //18.03.09 신규추가 AR15 개장
+		"AR15Mod": [],
+		"RAR15Mod": []
+	},
     "AR70": {
         "AR70": [],
         "RAR70": []
@@ -347,6 +363,10 @@ var girlsData = {
             "atlas": "FN49"
         }
     },
+	"FN49Mod": { //18.03.09 신규추가 FN49 개장
+		"FN49Mod": [],
+		"RFN49Mod": []
+	},
     "FN57": {
         "FN57": [],
         "FN57_1109": [],
@@ -499,6 +519,10 @@ var girlsData = {
         "IDW": [],
         "RIDW": []
     },
+	"IDWMod": { //18.03.09 신규추가 IDW 개장
+		"IDWMod": [],
+		"RIDWMod": []
+	},
     "Intruder": {
         "Intruder": []
     },
@@ -648,6 +672,10 @@ var girlsData = {
         "M1911": [],
         "RM1911": []
     },
+	"M1911Mod": { //18.03.09 신규추가 M1911 개장
+		"M1911Mod": [],
+		"RM1911Mod": []
+	},
     "M1918": {
         "M1918": [],
         "M1918_102": [],
@@ -711,6 +739,10 @@ var girlsData = {
         "M4A1": [],
         "RM4A1": []
     },
+	"M4A1Mod": { //18.03.09 신규추가 M4A1 개장
+		"M4A1Mod": [],
+		"RM4A1Mod": []
+	},
     "M500": {
         "M500": [],
         "RM500": []
@@ -1299,6 +1331,7 @@ var girlsOptions = {
         "FN57": "Five-seveN",
         "HK45": "HK45",
         "M1911": "M1911",
+		"M1911Mod": "M1911 Mod",
         "M9": "M9",
         "M950A": "M950A",
         "MP446": "MP-446",
@@ -1332,6 +1365,8 @@ var girlsOptions = {
         "95type": "95\u5f0f",
         "97type": "97\u5f0f",
         "9A91": "9A-91",
+		"AK12": "AK12",
+		"AN94": "AN94",
         "AK47": "AK-47",
         "AR70": "AR70",
         "ART556": "ART556",
@@ -1352,11 +1387,13 @@ var girlsOptions = {
         "M16A1": "M16A1",
         "M4 SOPMOD II": "M4 SOPMODII",
         "M4A1": "M4A1",
+		"M4A1Mod": "M4A1 Mod",
         "OTs12": "OTs-12",
         "OTs14": "OTs-14",
         "RFB": "RFB",
         "SIG510": "SIG-510",
         "AR15": "ST AR-15",
+		"AR15Mod": "ST AR-15 Mod",
         "STG44": "StG44",
         "T91": "T91",
         "TAR21": "TAR-21",
@@ -1368,6 +1405,7 @@ var girlsOptions = {
         "BM59": "BM59",
         "DSR50": "DSR-50",
         "FN49": "FN-49",
+		"FN49Mod": "FN-49 Mod",
         "G28": "G28",
         "G43": "G43",
         "IWS2000": "IWS 2000",
@@ -1399,12 +1437,14 @@ var girlsOptions = {
     },
     "\uAE30\uAD00\uB2E8\uCD1D SMG": { //기관단총
         "64type": "64\u5f0f",
+		"64typeMod": "64\u5f0f Mod",
         "79type": "79\u5f0f",
         "EVO3": "EVO 3",
         "F1": "F1",
         "FMG9": "FMG-9",
         "G36C": "G36C",
         "IDW": "IDW",
+		"IDWMod": "IDW Mod",
         "KLIN": "KLIN",
         "M3": "M3",
         "MAC10": "MAC-10",
@@ -1448,7 +1488,7 @@ var girlsOptions = {
         "SPAS12": "SPAS-12",
         "SAIGA12": "Saiga-12",
         "SuperShorty": "Super-Shorty",
-	"S.A.T.8": "S.A.T.8"
+		"S.A.T.8": "S.A.T.8"
     },
     "\uAE30\uAD00\uCD1D MG": { //기관총
         "AAT52": "AAT-52",
