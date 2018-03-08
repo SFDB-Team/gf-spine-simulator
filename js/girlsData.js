@@ -25,6 +25,7 @@ var girlsData = {
         "56-1type": [],
         "56-1type_401": [],
         "R56-1type": {
+			"png": "56-1type" //56-1type R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "56-1type"
         },
         "R56-1type_401": []
@@ -45,6 +46,7 @@ var girlsData = {
     "63type": {
         "63type": [],
         "R63type": {
+			"png": "63type", //63type R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "63type"
         }
     },
@@ -108,6 +110,7 @@ var girlsData = {
     "98K": {
         "98K": [],
         "R98K": {
+			"png": "98K", //KAR98K R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "98K"
         }
     },
@@ -147,6 +150,7 @@ var girlsData = {
     "APS": {
         "APS": [],
         "RAPS": {
+			"png": "APS" //APS R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "APS"
         }
     },
@@ -176,6 +180,7 @@ var girlsData = {
     "ARX160": {
         "ARX160": [],
         "RARX160": {
+			"png": "ARX160", //ARX160 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "ARX160"
         }
     },
@@ -186,6 +191,7 @@ var girlsData = {
     "ASVAL": {
         "ASVAL": [],
         "RASVAL": {
+			"png": "ASVAL", //ASVAL  R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "ASVAL"
         }
     },
@@ -258,6 +264,7 @@ var girlsData = {
     "CZ805": {
         "CZ805": [],
         "RCZ805": {
+			"png": "CZ805", //CZ805 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "CZ805"
         }
     },
@@ -307,6 +314,7 @@ var girlsData = {
     "F2000": {
         "F2000": [],
         "RF2000": {
+			"png": "F2000", //F2000 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "F2000"
         }
     },
@@ -334,6 +342,7 @@ var girlsData = {
     "FN49": {
         "FN49": [],
         "RFN49": {
+			"png": "FN49", //FN49 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "FN49"
         }
     },
@@ -354,9 +363,11 @@ var girlsData = {
             "atlas": "FNFAL"
         },
         "RFNFAL_308": {
+			"png": "FNFAL_308", //FNFAL R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "FNFAL_308"
         },
         "RFNFAL_607": {
+			"png": "FNFAL_607", //FNFAL R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "FNFAL_607"
         }
     },
@@ -378,6 +389,7 @@ var girlsData = {
         "G28": [],
         "G28_1104": [],
         "RG28": {
+			"png": "G28", //G28 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "G28"
         },
         "RG28_1104": {
@@ -462,6 +474,7 @@ var girlsData = {
     "HK45": {
         "HK45": [],
         "RHK45": {
+			"png": "HK45", //HK45 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "HK45"
         }
     },
@@ -776,6 +789,7 @@ var girlsData = {
         "Mk23_8": [],
         "RMk23": [],
         "RMk23_8": {
+			"png": "Mk23_8", //RMk23_8 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "Mk23_8"
         }
     },
@@ -810,6 +824,7 @@ var girlsData = {
         "RMP446": [],
         "RMP446_103": [],
         "RMP446_402": {
+			"png": "MP446_402", //MP446_402 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "MP446_402"
         }
     },
@@ -888,6 +903,7 @@ var girlsData = {
         "P7_606": [],
         "RP7": [],
         "RP7_606": {
+			"png": "P7_606", //RP7_606 R 텍스쳐 더미 파일로 png 를 기본 png 로 불러오도록 override
             "atlas": "P7_606"
         }
     },
