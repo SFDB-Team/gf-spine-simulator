@@ -584,7 +584,7 @@ var girlsDataKr = {
 	"Carcano1891": { //카르카노 M1891
 		"name": "\uCE74\uB974\uCE74\uB178 1891"
 	},
-	"Carcano9138": { //카르카노 M91/38
+	"Carcano1938": { //카르카노 M91/38
 		"name": "\uCE74\uB974\uCE74\uB178 M91/38"
 	},
 	"80type": { //80식
