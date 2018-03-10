@@ -1300,7 +1300,7 @@ var girlsData = {
 	"ZastavaM21": { //ZastavaM21 (Zas M21) 18.03.10 추가
 		"ZastavaM21": [],
 		"RZastavaM21": [],
-		"ZsatavaM21_1603": [],
+		"ZastavaM21_1603": [],
 		"RZastavaM21_1603": []
 	},
 	
@@ -1321,7 +1321,7 @@ var girlsData = {
 	
 	"80type": { //80식 18.03.10 추가
 		"80type": [],
-		"R80Type": []
+		"R80type": []
 	},
 	
 	"xm3": { //XM3 18.03.10 추가
@@ -1429,8 +1429,7 @@ var girlsOptions = {
         "SPS": "\u8b1d\u723e\u4e45\u79d1\u592b",
         "357": "\u963f\u65af\u7279\u62c9\u5de6\u8f2a",
         "PM": "\u99ac\u5361\u6d1b\u592b",
-		"P226": "P226",
-		"HK23": "HK23"
+		"P226": "P226"
     },
     "\uB3CC\uACA9\uC18C\uCD1D AR": { //돌격소총
         "56-1type": "56-1\u5f0f",
@@ -1512,7 +1511,9 @@ var girlsOptions = {
         "M1891": "\u83ab\u8f9b-\u7d0d\u7518",
         "SKS": "\u897f\u8499\u8afe\u592b",
 		"JS-127": "JS05",
-		"XM3": "XM3"
+		"XM3": "XM3",
+		"Carcano1891": "Carcano1891",
+		"CarcanoM91/38": "CarcanoM91/38"
     },
     "\uAE30\uAD00\uB2E8\uCD1D SMG": { //기관단총
         "64type": "64\u5f0f",
@@ -1596,6 +1597,7 @@ var girlsOptions = {
         "NEGEV": "\u5167\u84cb\u592b",
         "BrenMK": "\u5e03\u502b",
         "Ameli": "\u963f\u6885\u5229",
-		"80type": "80type"
+		"80type": "80type",
+		"HK23": "HK23"
     }
 };
