@@ -1314,7 +1314,7 @@ var girlsData = {
 		"RCarcano1891": []
 	},
 	
-	"CarcanoM91/38": { //카르카노 M91/38 18.03.10 추가
+	"CarcanoM9138": { //카르카노 M91/38 18.03.10 추가
 		"Carcano1938": [],
 		"RCarcano1938": []
 	},
