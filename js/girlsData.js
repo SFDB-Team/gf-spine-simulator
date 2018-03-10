@@ -1513,7 +1513,7 @@ var girlsOptions = {
 		"JS-127": "JS05",
 		"XM3": "XM3",
 		"Carcano1891": "Carcano1891",
-		"CarcanoM91/38": "CarcanoM91/38"
+		"CarcanoM9138": "CarcanoM9138"
     },
     "\uAE30\uAD00\uB2E8\uCD1D SMG": { //기관단총
         "64type": "64\u5f0f",
