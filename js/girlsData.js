@@ -1512,8 +1512,8 @@ var girlsOptions = {
         "SKS": "\u897f\u8499\u8afe\u592b",
 		"JS-127": "JS05",
 		"XM3": "XM3",
-		"Carcano1891": "Carcano1891",
-		"Carcano1938": "Carcano1938"
+		"Carcano1891": "\uCE74\uB974\uCE74\uB178 1891",
+		"Carcano1938": "\uCE74\uB974\uCE74\uB178 M91/38"
     },
     "\uAE30\uAD00\uB2E8\uCD1D SMG": { //기관단총
         "64type": "64\u5f0f",
