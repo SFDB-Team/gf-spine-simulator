@@ -550,5 +550,47 @@ var girlsDataKr = {
 	},
 	"M1911Mod": { //M1911 개장
 		"name": "M1911 \uAC1C\uC7A5"
+	},
+	"AK5": {
+		"name": "AK5"
+	},
+	"P226": {
+		"name": "P226"
+	},
+	"JS-127": {
+		"name": "JS-05"
+	},
+	"NS2000": {
+		"name": "NS2000"
+	},
+	"USAS12": {
+		"name": "USAS-12"
+	},
+	"T65": {
+		"name": "T65"
+	},
+	"M12": {
+		"name": "M12"
+	},
+	"HK23": {
+		"name": "HK23"
+	},
+	"ZastavaM21": { //Zas M21
+		"name": "Zas M21"
+	},
+	"PP1901": {
+		"name": "PP-19-01"
+	},
+	"Carcano1891": { //카르카노 M1891
+		"name": "\uCE74\uB974\uCE74\uB178 1891"
+	},
+	"CarcanoM91/38": { //카르카노 M91/38
+		"name": "\uCE74\uB974\uCE74\uB178 M91/38"
+	},
+	"80type": { //80식
+		"name": "80 \uC2DD"
+	},
+	"XM3": {
+		"name": "XM3"
 	}
 };

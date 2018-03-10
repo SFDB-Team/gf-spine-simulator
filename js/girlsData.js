@@ -1255,7 +1255,79 @@ var girlsData = {
 	"RSAT8": [],
 	"SAT8_1802": [],
 	"RSAT8_1802": []
-    }
+    },
+	"AK5": { //AK5 18.03.10 추가
+		"AK5": [],
+		"RAK5": []
+	},
+	
+	"P226": { //P226 18.03.10 추가
+		"P226": [],
+		"RP226": []
+	},
+	
+	"JS-127": { //JS05 (JS-127) 18.03.10 추가
+		"JS-127": [],
+		"RJS-127": [],
+		"JS-127_1804": []
+	},
+	
+	"NS2000": { //NS2000 18.03.10 추가
+		"NS2000": [],
+		"RNS2000": []
+	},
+	
+	"USAS12": { //USAS-12 18.03.10 추가
+		"USAS12": [],
+		"RUSAS12": []
+	},
+	
+	"T65": { //T65 18.03.10 추가
+		"T65": [],
+		"RT65": []
+	},
+	
+	"M12": { //M12 18.03.10 추가
+		"M12": [],
+		"RM12": []
+	},
+	
+	"HK23": { //HK23 18.03.10 추가
+		"HK23": [],
+		"RHK23": []
+	},
+	
+	"ZastavaM21": { //ZastavaM21 (Zas M21) 18.03.10 추가
+		"ZastavaM21": [],
+		"RZastavaM21": [],
+		"ZsatavaM21_1603": [],
+		"RZastavaM21_1603": []
+	},
+	
+	"PP1901": { //PP-19-01 18.03.10 추가
+		"PP1901": [],
+		"RPP1901": []
+	},
+	
+	"Carcano1891": { //카르카노M1891 18.03.10 추가
+		"Carcano1891": [],
+		"RCarcano1891": []
+	},
+	
+	"CarcanoM91/38": { //카르카노 M91/38 18.03.10 추가
+		"Carcano1938": [],
+		"RCarcano1938": []
+	},
+	
+	"80type": { //80식 18.03.10 추가
+		"80type": [],
+		"R80Type": []
+	},
+	
+	"xm3": { //XM3 18.03.10 추가
+		"xm3": [],
+		"Rxm3": []
+	}
 };
 
 var girlsOptions = {
@@ -1356,7 +1428,9 @@ var girlsOptions = {
         "Welrod": "\u7dad\u723e\u5fb7Mk\u2161",
         "SPS": "\u8b1d\u723e\u4e45\u79d1\u592b",
         "357": "\u963f\u65af\u7279\u62c9\u5de6\u8f2a",
-        "PM": "\u99ac\u5361\u6d1b\u592b"
+        "PM": "\u99ac\u5361\u6d1b\u592b",
+		"P226": "P226",
+		"HK23": "HK23"
     },
     "\uB3CC\uACA9\uC18C\uCD1D AR": { //돌격소총
         "56-1type": "56-1\u5f0f",
@@ -1398,7 +1472,10 @@ var girlsOptions = {
         "T91": "T91",
         "TAR21": "TAR-21",
         "Ribeyrolles": "\u5229\u8c9d\u7f85\u52d2",
-        "AR": "\u52a0\u5229\u723e"
+        "AR": "\u52a0\u5229\u723e",
+		"AK5": "AK5",
+		"T65": "T65",
+		"ZastavaM21": "Zas M21"
     },
     "\uC18C\uCD1D RF": { //소총
         "56typeR": "56\u5f0f\u534a",
@@ -1433,7 +1510,9 @@ var girlsOptions = {
         "MLEMK1": "\u674e-\u6069\u83f2\u723e\u5fb7",
         "88type": "\u6f22\u967d\u902088\u5f0f",
         "M1891": "\u83ab\u8f9b-\u7d0d\u7518",
-        "SKS": "\u897f\u8499\u8afe\u592b"
+        "SKS": "\u897f\u8499\u8afe\u592b",
+		"JS-127": "JS05",
+		"XM3": "XM3"
     },
     "\uAE30\uAD00\uB2E8\uCD1D SMG": { //기관단총
         "64type": "64\u5f0f",
@@ -1473,7 +1552,9 @@ var girlsOptions = {
         "MicroUZI": "\u5fae\u578b\u70cf\u8332",
         "M1928A1": "\u6e6f\u59c6\u68ee",
         "KP31": "\u7d22\u7c73",
-        "VZ61": "\u880d\u5f0f"
+        "VZ61": "\u880d\u5f0f",
+		"M12": "M12",
+		"PP1901": "PP-19-01"
     },
     "\uC0B0\uD0C4\uCD1D SG": { //산탄총
         "97typeS": "97\u5f0f\u9730",
@@ -1488,7 +1569,9 @@ var girlsOptions = {
         "SPAS12": "SPAS-12",
         "SAIGA12": "Saiga-12",
         "SuperShorty": "Super-Shorty",
-		"S.A.T.8": "S.A.T.8"
+		"S.A.T.8": "S.A.T.8",
+		"NS2000": "NS2000",
+		"USAS12": "USAS12"
     },
     "\uAE30\uAD00\uCD1D MG": { //기관총
         "AAT52": "AAT-52",
@@ -1512,6 +1595,7 @@ var girlsOptions = {
         "RPD": "RPD",
         "NEGEV": "\u5167\u84cb\u592b",
         "BrenMK": "\u5e03\u502b",
-        "Ameli": "\u963f\u6885\u5229"
+        "Ameli": "\u963f\u6885\u5229",
+		"80type": "80type"
     }
 };
