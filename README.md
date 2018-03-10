@@ -1,4 +1,4 @@
-# 소녀전선 인형 시뮬레이터
+# 소녀전선 숙소/치비 SD시뮬레이터
 
 ![미리보기](https://raw.githubusercontent.com/wsmwason/gf-spine-simulator/master/images/preview.png)
 
@@ -8,9 +8,9 @@ MIT License Duplicate 에 의해 동일한 권한을 얻었습니다.[cullus](ht
 
 ## gf-spine-simulator
 
- * 통합 미리보기 URL (중국어) https://gf.fws.tw/db/guns/simulator
+ * 통합 미리보기 URL (중국어) https://gf.fws.tw/db/guns/simulator/
  * 수정된 변경본 URL (중국어) https://gf.fws.tw/gf-spine-simulator/
- * 통합 미리보기 URL (한국어 번역) https://girlsfrontline.kr/db/simulator
+ * 통합 미리보기 URL (한국어 번역) https://girlsfrontline.kr/db/simulator/
 
 
 ## 종속성 문제를 위해 bower 설치 필요 
