@@ -1314,7 +1314,7 @@ var girlsData = {
 		"RCarcano1891": []
 	},
 	
-	"CarcanoM9138": { //카르카노 M91/38 18.03.10 추가
+	"Carcano9138": { //카르카노 M91/38 18.03.10 추가
 		"Carcano1938": [],
 		"RCarcano1938": []
 	},
@@ -1513,7 +1513,7 @@ var girlsOptions = {
 		"JS-127": "JS05",
 		"XM3": "XM3",
 		"Carcano1891": "Carcano1891",
-		"CarcanoM9138": "CarcanoM9138"
+		"Carcano9138": "Carcano9138"
     },
     "\uAE30\uAD00\uB2E8\uCD1D SMG": { //기관단총
         "64type": "64\u5f0f",
