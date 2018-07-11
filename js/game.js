@@ -93,8 +93,8 @@ var preview = {
     });
 
     preview.selectScale = 1;
-    preview.selectX = 128;
-    preview.selectY = 180;
+    preview.selectX = preview.canvas.width() * 0.5;
+    preview.selectY = preview.canvas.height() * 0.85
 
     preview.stage = new PIXI.Container;
     preview.renderer = PIXI.autoDetectRenderer(preview.canvas.width(), preview.canvas.height(), {transparent : true});

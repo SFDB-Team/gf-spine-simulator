@@ -1,7 +1,5 @@
 var girlsData = {
     "pet": {
-        "dog3": [],
-        "dog4": [],
         "cat1": [],
         "cat2": [],
         "cat3": [],
@@ -9,6 +7,8 @@ var girlsData = {
         "cat5": [],
         "dog1": [],
         "dog2": [],
+        "dog3": [],
+        "dog4": [],
         "dog5": [],
         "dog6": []
     },
