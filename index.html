@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>36베이스 - 소녀전선 숙소/치비 SD시뮬레이터</title>
+<title>소녀전선 숙소/치비 SD시뮬레이터</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/bootstrap@4/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/css.css">
 <meta property="og:title" content="Girls' Frontline Chibi simulator">
@@ -35,8 +35,10 @@ alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge
 <select class="custom-select"></select>
 </div>
 <div class="text-center">
+<div class="btn-group btn-group-sm">
 <button type="button" class="btn btn-primary preAddRole">투입</button>
-<button type="button" class="btn btn-primary preStopRole">정지</button>
+<button type="button" class="btn btn-secondary preStopRole">정지</button>
+</div>
 </div>
 </div>
 <div class="gameview col-5">
@@ -62,23 +64,26 @@ alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge
 <input type="range" class="custom-range col p-0" min="200" max="3000">
 </div>
 <div class="text-center">
+<div class="btn-group btn-group-sm">
 <button type="button" class="btn btn-primary btn-sm gameTurnRole">좌우반전</button>
-<button type="button" class="btn btn-primary btn-sm gameRemoveRole">인형제거</button>
+<button type="button" class="btn btn-secondary btn-sm gameRemoveRole">인형제거</button>
+</div>
 </div>
 </div>
 </div>
 </nav>
 <div class="gameShowFPS canvasFps custom-control custom-checkbox"><input type="checkbox" checked="checked" class="custom-control-input"><label class="custom-control-label" for="customCheck">FPS 수치 출력</label></div>
 <div class="gameCanvas Canvas"></div>
-<nav class="convasControl form-inline col-12">
-<div class="gameSelectBackground form-group">
-<span>배경화면</span>
-<select class="form-control input-sm"></select>
+<nav class="convasControl clearfix col-12 p-0 mt-2">
+<div class="gameSelectBackground form-inline float-left m-0">
+<label>배경화면</label>
+<!--895 -->
+<select class="custom-select-sm"></select>
 </div>
-<button type="button" class="btn btn-primary btn-sm gameSavePng pull-right" style="margin-left:10px;">이미지 저장하기</button>
-<button type="button" class="btn btn-primary btn-sm pull-right" onClick="alert('웹저장 시스템 개선 중 입니다.')" style="margin-left:10px;">이 상태로 웹에 저장</button>
-<!--<button type="button" class="btn btn-primary btn-sm gameSaveStage pull-right" style="margin-left:10px;">이 상태로 웹에 저장</button>-->
-<button type="button" class="btn btn-primary btn-sm gameStopRole pull-right">인형 모션정지</button>
+<div class="btn-group btn-group-sm float-right">
+<button type="button" class="btn btn-secondary gameStopRole">인형 모션정지</button>
+<button type="button" class="btn btn-primary gameSavePng">이미지 저장하기</button>
+</div>
 </nav>
 <img id="saveImage" width="100%">
 <footer class="mx-auto">
