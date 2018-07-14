@@ -527,8 +527,8 @@ var girlsDataKr = {
 	"S.A.T.8":{
 	"name":"S.A.T.8"
 	},
-	"64typeMod":{ //64식 개장
-		"name":"64type \uAC1C\uC7A5"
+	"64typeMod":{ //64식 Mod
+		"name":"64type Mod"
 	},
 	"AK12":{
 		"name":"AK12"
@@ -536,20 +536,20 @@ var girlsDataKr = {
 	"AN94":{
 		"name":"AN94"
 	},
-	"AR15Mod":{ //6ㄱ식 개장
-		"name":"ST AR-15 \uAC1C\uC7A5"
+	"AR15Mod":{ //6ㄱ식 Mod
+		"name":"ST AR-15 Mod"
 	},
-	"FN49Mod":{ //FN49 개장
-		"name":"FN-49 \uAC1C\uC7A5"
+	"FN49Mod":{ //FN49 Mod
+		"name":"FN-49 Mod"
 	},
-	"IDWMod":{ //IDW 개장
-		"name":"IDW \uAC1C\uC7A5"
+	"IDWMod":{ //IDW Mod
+		"name":"IDW Mod"
 	},
-	"M4A1Mod":{ //M4A1 개장
-		"name":"M4A1 개장"
+	"M4A1Mod":{ //M4A1 Mod
+		"name":"M4A1 Mod"
 	},
-	"M1911Mod":{ //M1911 개장
-		"name":"M1911 \uAC1C\uC7A5"
+	"M1911Mod":{ //M1911 Mod
+		"name":"M1911 Mod"
 	},
 	"AK5":{
 		"name":"AK5"
@@ -595,5 +595,122 @@ var girlsDataKr = {
 	},
 	"BB_Noel":{
 		"name":"\uB178\uC5D8"
+	},
+	"Alchemist":{
+		"name":"알케미스트"
+	},
+	"Ripper":{
+		"name":"리퍼"
+	},
+	"Vespid":{
+		"name":"베스피드"
+	},
+	"Jaeger":{
+		"name":"예거"
+	},
+	"Guard":{
+		"name":"가드"
+	},
+	"Dragoon":{
+		"name":"드라군"
+	},
+	"Striker":{
+		"name":"스트라이커"
+	},
+	"Brute":{
+		"name":"브루트"
+	},
+	"Drone":{
+		"name":"훈련용 표적"
+	},
+	"Prowler":{
+		"name":"순찰기"
+	},
+	"Dinergate":{
+		"name":"정찰견"
+	},
+	"Scouts":{
+		"name":"정찰기"
+	},
+	"Jaguar":{
+		"name":"박격포"
+	},
+	"Golyat":{
+		"name":"자폭병"
+	},
+	"GolyatPlus":{
+		"name":"강화 자폭병"
+	},
+	"Aegis":{
+		"name":"철혈 장갑 인형병"
+	},
+	"Nemeum":{
+		"name":"철혈 시제 중장 단포"
+	},
+	"Manticore":{
+		"name":"철혈식 노획형 정규군 장갑 기갑"
+	},
+	"Tarantula":{
+		"name":"장갑수색견"
+	},
+	"Jupiter":{
+		"name":"철혈식 복제형 정규군 야포"
+	},
+	"Unknown":{
+		"name":"알 수 없음"
+	},
+	"Scarecrow":{
+		"name":"스케어크로우"
+	},
+	"Excutioner":{
+		"name":"엑스큐셔너"
+	},
+	"ExcutionerElite":{
+		"name":"엑스큐셔너 엘리트 소체"
+	},
+	"Hunter":{
+		"name":"헌터"
+	},
+	"HunterElite":{
+		"name":"헌터 엘리트 소체"
+	},
+	"Intruder":{
+		"name":"인트루더"
+	},
+	"Destroyer":{
+		"name":"디스트로이어"
+	},
+	"Boss10":{
+		"name":"드리머"
+	},
+	"Uroboros":{
+		"name":"우로보로스"
+	},
+	"Boss8":{
+		"name":"게이저"
+	},
+	"Boss9":{
+		"name":"아키텍트"
+	},
+	"Cerberus":{
+		"name":"가름"
+	},
+	"DestroyerPlus":{
+		"name":"디스트로이어 엘리트 소체"
+	},
+	"GG_elfeldt":{
+		"name":"엘펠트"
+	},
+	"GG_Elfeldt_SF":{
+		"name":"엘펠트 철혈"
+	},
+	"Type100":{
+		"name":"100식"
+	},
+	"Weaver":{
+		"name":"우로보로스"
+	},
+	"WeaverElite":{
+		"name":"우로보로스 엘리트 소체"
 	}
 };

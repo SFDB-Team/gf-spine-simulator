@@ -219,6 +219,7 @@ var gameview={
 		gameview.saveStageBtn=$(".gameSaveStage");
 		gameview.savePngBtn=$(".gameSavePng");
 		gameview.removeRole=$(".gameRemoveRole");
+		gameview.removeAllRole=$(".gameRemoveAllRole");
 		gameview.isUpdate=true;
 		gameview.isShowFPS=true;
 		backgroundlength=game.background.length;
@@ -279,9 +280,18 @@ var gameview={
 			gameview.role.splice(n-1,n);
 			n =gameview.selectCharacter[0].selectedIndex;
 			gameview.focusRole=null;
-			gameview.selectAnimation.html("");
+			gameview.selectAnimation.html(stringAnimation);
 		});
 
+		gameview.removeAllRole.click(function(){
+			var n=gameview.role.length;
+			for(var i=0;i<n;i++){gameview.stage.removeChild(gameview.role[i]);}
+			gameview.selectCharacter.html(stringCharacter);
+			gameview.selectAnimation.html(stringAnimation);
+			gameview.role.splice(0,n)
+			gameview.focusRole=null;
+		});
+		
 		gameview.turnRole.click(function(){
 			gameview.focusRole.scale.x *= -1;
 		});
