@@ -220,6 +220,7 @@ var gameview={
 		gameview.savePngBtn=$(".gameSavePng");
 		gameview.removeRole=$(".gameRemoveRole");
 		gameview.removeAllRole=$(".gameRemoveAllRole");
+		gameview.timestop=$(".gameTimestop")
 		gameview.isUpdate=true;
 		gameview.isShowFPS=true;
 		backgroundlength=game.background.length;
@@ -283,6 +284,18 @@ var gameview={
 			gameview.selectAnimation.html(stringAnimation);
 		});
 
+		gameview.timestop.click(function(){
+			var i=gameview.selectCharacter[0].selectedIndex;
+			var time=gameview.role[i-1].state.tracks[0].timeScale;
+			if(time==1){
+				gameview.role[i-1].state.tracks[0].timeScale=0;
+				gameview.timestop.html("재생").addClass("btn-success");
+			}else{
+				gameview.role[i-1].state.tracks[0].timeScale=1;
+				gameview.timestop.html("정지").removeClass("btn-success");
+			}
+		});
+
 		gameview.removeAllRole.click(function(){
 			var n=gameview.role.length;
 			for(var i=0;i<n;i++){gameview.stage.removeChild(gameview.role[i]);}
@@ -299,10 +312,10 @@ var gameview={
 		gameview.stopRole.click(function(){
 			if(gameview.isUpdate){
 				gameview.isUpdate=false;
-				gameview.stopRole.html("재생").toggleClass("btn-success btn-secondary");
+				gameview.stopRole.html("모두재생").toggleClass("btn-success btn-secondary");
 			}else{
 				gameview.isUpdate=true;
-				gameview.stopRole.html("인형 모션정지").toggleClass("btn-success btn-secondary");
+				gameview.stopRole.html("모두정지").toggleClass("btn-success btn-secondary");
 			}
 		});
 
@@ -435,3 +448,6 @@ var gameview={
 	}
 }
 
+function onTouchStart(){
+console.log("hi")
+}
