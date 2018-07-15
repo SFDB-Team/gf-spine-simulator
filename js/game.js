@@ -41,7 +41,6 @@ var preview={
 		preview.stopRole=$(".preStopRole");
 		preview.addRole=$(".preAddRole");
 		preview.isUpdate=true;
-
 		var stringCharacter="<option>선택하세요</option>";
 		for(var type in girlsOptions){
 			stringCharacter+='<optgroup label="'+type+'">';
@@ -66,6 +65,7 @@ var preview={
 			}
 			preview.selectSkin.html(strSkinsOption);
 			preview.selectSkin.change();
+			preview.stage.interactive=true;
 		});
 
 		preview.selectSkin.change(function(){
@@ -94,7 +94,7 @@ var preview={
 
 		preview.selectScale=1;
 		preview.selectX=preview.canvas.width()*0.5;
-		preview.selectY=preview.canvas.height()*0.85
+		preview.selectY=preview.canvas.height()*0.85;
 
 		preview.stage=new PIXI.Container;
 		preview.renderer=PIXI.autoDetectRenderer(preview.canvas.width(),preview.canvas.height(),{transparent:true});
@@ -117,6 +117,7 @@ var preview={
 		var aniName=animations;
 		var stringAnimations="";
 		var anilength=animations.length;
+		var n,motion=[],nowSkin=0;
 		for (var i=0;i < anilength;i++){		
 			aniName[i].name=="attack"?aniName[i].name="공격":
 			aniName[i].name=="attack2"?aniName[i].name="보조공격":
@@ -150,8 +151,23 @@ var preview={
 		preview.changeAnimation(0);
 		preview.spine.skeleton.setToSetupPose();
 		preview.spine.update(0);
+		//preview.stage.children[0].state.tracks[0].animation.name
 		preview.spine.autoUpdate=false;
 		preview.stage.addChild(preview.spine);
+		var Canilength=preview.stage.children[0].state.data.skeletonData.animations.length;
+		for(var i=0;i<Canilength;i++){
+			motion.push(Object.values(preview.stage.children[0].state.data.skeletonData.animations[i])[0])
+		}
+		preview.stage.on('pointerdown', function(){
+			if(nowSkin>=Canilength){
+				preview.changeAnimation(0);
+				nowSkin=0
+			}else{
+				preview.changeAnimation(nowSkin);
+				nowSkin+=1
+			};
+			preview.selectAnimation.val(preview.stage.children[0].state.tracks[0].animation.name)
+    });
 	},
 
 	loadToStage:function(defaultStageData,spineData){
@@ -448,6 +464,6 @@ var gameview={
 	}
 }
 
-function onTouchStart(){
-console.log("hi")
+function onClick () {
+    console.log("hi")
 }
