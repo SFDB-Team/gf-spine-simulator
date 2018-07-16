@@ -1,4 +1,4 @@
-# [소녀전선 숙소/치비 SD시뮬레이터](https://github.com/ergo9ine/gf-spine-simulator)
+# [Girls' FrontLine  SD Simulator](https://github.com/ergo9ine/gf-spine-simulator)
 
 ![미리보기](https://github.com/ergo9ine/gf-spine-simulator/blob/master/images/preview.png)
 
@@ -26,6 +26,8 @@ MIT License Duplicate 에 의해 동일한 권한을 얻었습니다.[cullus](ht
  * 인형 모두제거 버튼 추가
  * 개별 정지 버튼 추가
  * 배경 추가
+ * 인형 모두 지우기
+ * 인형 드래그(터치)로 이동
 
 ## Todo
 
@@ -34,8 +36,7 @@ MIT License Duplicate 에 의해 동일한 권한을 얻었습니다.[cullus](ht
  * 인형검색
  * 반응형 레이아웃
  * 배경 추가
- * 인형 모두 지우기
 
 ## License
 
-MIT License Duplicate
+MIT License
