@@ -206,6 +206,7 @@ var gameview={
 		gameview.timestop=$(".gameTimestop")
 		gameview.isUpdate=true;
 		gameview.isShowFPS=true;
+		timeVal=[],
 		backgroundlength=game.background.length;
 		var stringBackground="<option>없음</option>";
 		for(var i=0;i<backgroundlength;i++){stringBackground+="<option>"+game.background[i]+"</option>"}
@@ -217,8 +218,8 @@ var gameview={
 		var stringCharacter="<option>인형을 선택하세요</option>";
 		gameview.selectCharacter.html(stringCharacter);
 		gameview.selectCharacter.change(function(){
-			if(this.selectedIndex==0) return;
-			var role=gameview.role[this.selectedIndex-1];
+			if(this.selectedIndex==0){return};
+			var role=gameview.stage.children[this.selectedIndex+1];
 			gameview.selectposX.val(role.x);
 			gameview.selectposY.val(role.y);
 			gameview.selectscale.val(Math.abs(role.scale.x)*1000);
@@ -230,40 +231,59 @@ var gameview={
 				stringAnimations+="<option"+defaultAnimation+">"+role.spineData.animations[i].name+"</option>";
 			}
 			gameview.selectAnimation.html(stringAnimations)
+			if(timeVal[this.selectedIndex-1]==0){
+				gameview.timestop.html("재생").addClass("btn-success")
+			}else{
+				gameview.timestop.html("정지").removeClass("btn-success")
+			}
 		});
+		var charOn=gameview.selectCharacter[0].selectedIndex;
 		var stringAnimation="<option>모션이 표시됩니다.</option>";
 		gameview.selectAnimation.html(stringAnimation);
 		gameview.selectAnimation.change(function(){gameview.changeAnimation(this.selectedIndex)});
 		gameview.removeRole.click(function(){
-			var n=gameview.selectCharacter[0].selectedIndex;
-			if(n==0){return}
-			gameview.stage.removeChild(gameview.role[n-1]);
-			gameview.selectCharacter[0].remove(n);
-			gameview.role.splice(n-1,n);
-			n=gameview.selectCharacter[0].selectedIndex;
+			charOn=gameview.selectCharacter[0].selectedIndex;
+			if(charOn==0){return};
+			gameview.stage.removeChild(gameview.role[charOn-1]);
+			gameview.selectCharacter[0].remove(charOn);
+			gameview.role.splice(charOn-1,charOn);
 			gameview.focusRole=null;
-			gameview.selectAnimation.html(stringAnimation)
+			gameview.selectAnimation.html(stringAnimation);
+			timeVal.splice(charOn-1,1);
+			gameview.timestop.html("정지").removeClass("btn-success")
 		});
 		gameview.timestop.click(function(){
-			var i=gameview.selectCharacter[0].selectedIndex;
-			if(gameview.role[i-1].state.tracks[0].timeScale==1){
-				gameview.role[i-1].state.tracks[0].timeScale=0;
+			charOn=gameview.selectCharacter[0].selectedIndex;
+			if(charOn==0){return};
+			if(gameview.role[charOn-1].state.tracks[0].timeScale==1){
+				gameview.role[charOn-1].state.tracks[0].timeScale=0;
 				gameview.timestop.html("재생").addClass("btn-success");
+				timeVal[charOn-1]=0;
 			}else{
-				gameview.role[i-1].state.tracks[0].timeScale=1;
+				gameview.role[charOn-1].state.tracks[0].timeScale=1;
 				gameview.timestop.html("정지").removeClass("btn-success");
+				timeVal[charOn-1]=1;
 			}
 		});
 		gameview.removeAllRole.click(function(){
 			var n=gameview.role.length;
-			for(var i=0;i<n;i++){gameview.stage.removeChild(gameview.role[i]);}
+			charOn=gameview.selectCharacter[0].selectedIndex;
+			if(charOn==0){return};
+			for(var i=0;i<n;i++){gameview.stage.removeChild(gameview.role[i])};
 			gameview.selectCharacter.html(stringCharacter);
 			gameview.selectAnimation.html(stringAnimation);
-			gameview.role.splice(0,n)
-			gameview.focusRole=null
+			gameview.role.splice(0,n);
+			gameview.focusRole=null;
+			timeVal.splice(charOn,1)
 		});
-		gameview.turnRole.click(function(){gameview.focusRole.scale.x*=-1});
+		gameview.turnRole.click(function(){
+			charOn=gameview.selectCharacter[0].selectedIndex;
+			if(charOn==0){return};
+			gameview.focusRole.scale.x*=-1}
+		);
 		gameview.stopRole.click(function(){
+			charOn=gameview.selectCharacter[0].selectedIndex;
+			if(charOn==0){return};
 			if(gameview.isUpdate){
 				gameview.isUpdate=false;
 				gameview.stopRole.html("모두재생").toggleClass("btn-success btn-secondary");
@@ -330,6 +350,7 @@ var gameview={
 		gameview.selectposY.val(skeletonData.y||gameview.selectY);
 		var scale=skeletonData.scale||gameview.selectScale;
 		var isMirror=false;
+		timeVal[gameview.selectCharacter[0].selectedIndex]=1;
 		if(scale<0){
 			scale=scale*-1;
 			isMirror=true
@@ -375,8 +396,8 @@ var gameview={
 			this.data=event.data,this.alpha=0.5,this.dragging=true;
 			gameview.selectCharacter[0].selectedIndex=this.parent.children.indexOf(this)-1;
 			gameview.selectCharacter.change()
-		}
-		function DragEnd(){this.alpha=1,this.dragging=false,this.data=null}
+		};
+		function DragEnd(){this.alpha=1,this.dragging=false,this.data=null};
 		function DragMove(){
 			if(this.dragging){
 				var newPo=this.data.getLocalPosition(this.parent);
