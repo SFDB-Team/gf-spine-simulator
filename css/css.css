@@ -1,10 +1,6 @@
 label{margin-bottom:0!important}
 input{align-self:center}
-.Container{
-	width:850px;
-	margin:0 auto;
-	position:relative
-}
+.Container{width:900px}
 .controlUi>div{height:17em}
 .input-group-prepend{width:90px;text-align:center!important}
 .input-group-text{width:100%}

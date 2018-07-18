@@ -1,4 +1,4 @@
-$(document).ready(function(){game.init();});
+$(document).ready(function(){game.init()});
 if(typeof resPasePath==='undefined'){var resPasePath=''};
 var game={
 	init:function(){
@@ -11,7 +11,7 @@ var game={
 			preview.loadStage(defaultStageData);
 			stageLoaded=true
 		}
-		if(window.location.hash && stageLoaded==false){
+		if(window.location.hash&&stageLoaded==false){
 			var hash=window.location.hash.substring(1);
 			preview.loadStage(hash);
 			stageLoaded=true
@@ -99,6 +99,7 @@ var preview={
 			aniName[i].name=="sp1"?aniName[i].name="특수행동1":
 			aniName[i].name=="reload"?aniName[i].name="재장전":
 			aniName[i].name=="victory"?aniName[i].name="승리":
+			aniName[i].name=="victory2"?aniName[i].name="승리2":
 			aniName[i].name=="victoryloop"?aniName[i].name="승리Loop":
 			aniName[i].name=="die"?aniName[i].name="사망":
 			aniName[i].name=="die2"?aniName[i].name="사망2":
@@ -160,8 +161,7 @@ var preview={
 		preview.lastTime=preview.nowTime;
 		preview.nowTime=new Date().getTime();
 		preview.animationFrame=window.requestAnimationFrame(preview.animate);
-		if(preview.isUpdate && preview.spine)
-			preview.spine.update( (preview.nowTime-preview.lastTime)/1000 );
+		if(preview.isUpdate&&preview.spine){preview.spine.update((preview.nowTime-preview.lastTime)/1000)}
 		preview.renderer.render(preview.stage)
 	},
 	changeAnimation:function(num){
@@ -240,7 +240,7 @@ var gameview={
 		var charOn=gameview.selectCharacter[0].selectedIndex;
 		var stringAnimation="<option>모션이 표시됩니다.</option>";
 		gameview.selectAnimation.html(stringAnimation);
-		gameview.selectAnimation.change(function(){gameview.changeAnimation(this.selectedIndex)});
+		gameview.selectAnimation.change(function(){gameview.changeAnimation(this.selectedIndex-0)});
 		gameview.removeRole.click(function(){
 			charOn=gameview.selectCharacter[0].selectedIndex;
 			if(charOn==0){return};
@@ -267,14 +267,11 @@ var gameview={
 		});
 		gameview.removeAllRole.click(function(){
 			var n=gameview.role.length;
-			charOn=gameview.selectCharacter[0].selectedIndex;
-			if(charOn==0){return};
 			for(var i=0;i<n;i++){gameview.stage.removeChild(gameview.role[i])};
 			gameview.selectCharacter.html(stringCharacter);
 			gameview.selectAnimation.html(stringAnimation);
 			gameview.role.splice(0,n);
 			gameview.focusRole=null;
-			timeVal.splice(charOn,1)
 		});
 		gameview.turnRole.click(function(){
 			charOn=gameview.selectCharacter[0].selectedIndex;
@@ -336,11 +333,12 @@ var gameview={
 		}
 		gameview.renderer.render(gameview.stage)
 	},
-	changeAnimation:function(num){
+	changeAnimation:function(num){ //인수 받아야함
 		var name=gameview.focusRole.spineData.animations[num].name;
 		var isload=true;
-		if(name=="die"||name=="reload"||name=="victory"){isload=false}
-		gameview.focusRole.state.setAnimationByName(0,name,isload,0);
+		if(name=="die"||name=="reload"||name=="victory"||name=="사망"||name=="재장전"||name=="승리"||name=="승리2"){isload=false}
+		gameview.focusRole.state.setAnimationByName(0,name,isload);
+		if(name=="victory"||name=="victory2"||name=="승리"||name=="승리2"){gameview.focusRole.state.addAnimationByName(0,"승리Loop",true,0)}
 		gameview.focusRole.update(0)
 	},
 	addRole:function(skeletonData,selectedAnimation){
@@ -369,7 +367,7 @@ var gameview={
 			stringAnimations+="<option"+defaultAnimation+">"+aniName+"</option>"
 		}
 		gameview.selectAnimation.html(stringAnimations);
-		gameview.changeAnimation(defaultAnimationId);
+		gameview.changeAnimation(defaultAnimationId); //인수 보내야함
 			role.x=skeletonData.x||gameview.selectX;
 			role.y=skeletonData.y||gameview.selectY;
 			role.scale.x=(isMirror)?scale*-1:scale||gameview.selectScale;
@@ -395,6 +393,7 @@ var gameview={
 		function DragStart(event){
 			this.data=event.data,this.alpha=0.5,this.dragging=true;
 			gameview.selectCharacter[0].selectedIndex=this.parent.children.indexOf(this)-1;
+			//console.log(this)
 			gameview.selectCharacter.change()
 		};
 		function DragEnd(){this.alpha=1,this.dragging=false,this.data=null};
@@ -407,7 +406,7 @@ var gameview={
 		}
 	},
 	changeBackground:function(n){
-		if(n==0 && gameview.background){
+		if(n==0&&gameview.background){
 			gameview.background.texture=PIXI.Texture.EMPTY;
 			gameview.background.filename='없음';
 			return
@@ -450,16 +449,15 @@ var gvHandler={
 		}
 		jsonData.bg=gameview.background.filename;
 		var jsonString=JSON.stringify(jsonData);
-		var shareUrl=location.protocol+'//'+location.host+location.pathname + '#' + encodeURIComponent(jsonString);
+		var shareUrl=location.protocol+'//'+location.host+location.pathname+'#'+encodeURIComponent(jsonString);
 		copyToClipboard(shareUrl);
 		alert("복사되었으니 주소창에 붙여넣기 하세요!")
 	},
 	savePng:function(gameview){
-		if(confirm("이미지는 하단에 출력됩니다. 아래 그림을 클릭 후 이미지를 마우스 오른쪽 버튼으로 클릭해 저장할 수 있습니다. 모바일은 이미지를 길게 눌러주세요.")){
-			var renderTexture=new PIXI.RenderTexture(gameview.renderer,1920,1080);
-			renderTexture.render(gameview.stage);
-			var canvas=renderTexture.getCanvas();
-			$('#saveImage').attr('src',canvas.toDataURL('image/png')).show()
+		if(confirm("이미지는 하단에 출력됩니다. 이미지를 마우스 오른쪽 버튼으로 클릭해 저장할 수 있습니다. 모바일은 이미지를 길게 눌러주세요.")){
+			var renderer=PIXI.autoDetectRenderer(1920,1080),
+				screen=PIXI.extract.CanvasExtract.canvas(gameview.stage);
+			$('#saveImage').html(screen).show();
 		}
 	}
 };
