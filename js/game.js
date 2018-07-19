@@ -21,7 +21,7 @@ var game={
 	setGameviewHandler:function(handler){gameview.handler=handler}
 };
 var preview={
-
+	init:function(){
 		preview.canvas=$(".preCanvas");
 		preview.selectCharacter=$(".preSelectCharacter>select");
 		preview.selectSkin=$(".preSelectSkin>select");
@@ -33,7 +33,7 @@ var preview={
 		for(var type in girlsOptions){
 			stringCharacter+='<optgroup label="'+type+'">';
 			for(var name in girlsOptions[type]){
-				var optionName=(girlsDataKr[name])?girlsDataKr[name]:name;
+				var optionName=(girlsDataKr[name])?girlsDataKr[name]:girlsOptions[type][name];
 				stringCharacter+='<option value="'+name+'">'+optionName+'</option>';
 			}
 			stringCharacter+='</optgroup>'
