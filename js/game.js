@@ -21,7 +21,7 @@ var game={
 	setGameviewHandler:function(handler){gameview.handler=handler}
 };
 var preview={
-	init:function(){
+
 		preview.canvas=$(".preCanvas");
 		preview.selectCharacter=$(".preSelectCharacter>select");
 		preview.selectSkin=$(".preSelectSkin>select");
@@ -240,7 +240,7 @@ var gameview={
 		var charOn=gameview.selectCharacter[0].selectedIndex;
 		var stringAnimation="<option>모션이 표시됩니다.</option>";
 		gameview.selectAnimation.html(stringAnimation);
-		gameview.selectAnimation.change(function(){gameview.changeAnimation(this.selectedIndex-0)});
+		gameview.selectAnimation.change(function(){gameview.changeAnimation(this.selectedIndex)});
 		gameview.removeRole.click(function(){
 			charOn=gameview.selectCharacter[0].selectedIndex;
 			if(charOn==0){return};
@@ -271,7 +271,7 @@ var gameview={
 			gameview.selectCharacter.html(stringCharacter);
 			gameview.selectAnimation.html(stringAnimation);
 			gameview.role.splice(0,n);
-			gameview.focusRole=null;
+			gameview.focusRole=null
 		});
 		gameview.turnRole.click(function(){
 			charOn=gameview.selectCharacter[0].selectedIndex;
@@ -455,9 +455,10 @@ var gvHandler={
 	},
 	savePng:function(gameview){
 		if(confirm("이미지는 하단에 출력됩니다. 이미지를 마우스 오른쪽 버튼으로 클릭해 저장할 수 있습니다. 모바일은 이미지를 길게 눌러주세요.")){
-			var renderer=PIXI.autoDetectRenderer(1920,1080),
-				screen=PIXI.extract.CanvasExtract.canvas(gameview.stage);
-			$('#saveImage').html(screen).show();
+	//     var renderTexture = new PIXI.RenderTexture(gameview.renderer, 1920, 1080);
+	//     renderTexture.renderWebGL(gameview.stage);
+	//      var canvas = renderTexture.getCanvas();
+			$('#saveImage').html().show();
 		}
 	}
 };
@@ -469,4 +470,15 @@ function copyToClipboard(val){
 	document.execCommand('copy');
 	document.body.removeChild(t)
 }
-game.setGameviewHandler(gvHandler);
+//game.setGameviewHandler(gvHandler);
+//
+//function download_sprite_as_png(renderer, sprite, fileName) {
+//	renderer.extract.canvas(sprite).toBlob(function(b){
+//		var a = document.createElement('a');
+//		document.body.append(a);
+//		a.download = fileName;
+//		a.href = URL.createObjectURL(b);
+//		a.click();
+//		a.remove();
+//	}, 'image/png');
+//}

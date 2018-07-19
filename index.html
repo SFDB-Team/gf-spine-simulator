@@ -13,13 +13,12 @@
 <script>
 var userAgent = navigator.userAgent.toLowerCase(); //빠른 구별 위해 소문자로만 출력
 //document.write(userAgent);
-if (userAgent.indexOf('trident') > -1) { //
-alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge, Google Chrome, Mozilla Firefox 를 이용해 주세요.")};
+if(userAgent.indexOf('trident')>-1){alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge, Google Chrome, Mozilla Firefox 를 이용해 주세요.")};
 </script>
 </head>
 <body>
 <div class="Container p-0 mx-auto row">
-<header class="mx-auto my-3 d-none d-md-block"><h1>Girls' FrontLine  SD Simulator</h1></header>
+<header class="mx-auto my-3 d-none d-md-block"><h2>Girls' FrontLine  SD Simulator</h2></header>
 <nav class="controlUi my-3 my-md-1 row no-gutters col-12 p-0">
 <div class="preCanvas Canvas col-4"></div>
 <div class="preUI mx-3 col">
@@ -75,7 +74,7 @@ alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge
 </div>
 </nav>
 <div class="gameShowFPS canvasFps custom-control custom-checkbox"><input type="checkbox" checked="checked" id="customCheck" class="custom-control-input"><label class="custom-control-label" for="customCheck">FPS 수치 출력</label></div>
-<div class="gameCanvas Canvas"></div>
+<div class="gameCanvas Canvas mx-auto"></div>
 <nav class="convasControl clearfix col-12 p-0 mt-2">
 <div class="gameSelectBackground form-inline float-left m-0">
 <label>배경화면</label>
@@ -101,7 +100,7 @@ alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pixi.js@4.6.2/dist/pixi.min.js"></script>
-<script src="js/pixi/pixi-spine.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pixi-spine@1.0.10/bin/pixi-spine.min.js"></script>
 <script src="js/girlsData.js"></script>
 <script src="js/spine-data.js"></script>
 <script src="js/game.js"></script>
