@@ -28,3 +28,8 @@ footer{
 footer p{
 	margin:0
 }
+
+#__gesture_canvas__ { /* Google Chrome 애드온 중, Pig Toolbox Gesture 기능 사용시 발생하는 우클릭 버그 수정 */
+	width="0";
+	height="0";
+}
