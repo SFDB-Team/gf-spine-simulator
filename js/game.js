@@ -336,9 +336,9 @@ var gameview={
 	changeAnimation:function(num){ //인수 받아야함
 		var name=gameview.focusRole.spineData.animations[num].name;
 		var isload=true;
-		if(name=="die"||name=="reload"||name=="victory"||name=="사망"||name=="재장전"||name=="승리"||name=="승리2"){isload=false}
+		if(name=="die"||name=="reload"||name=="victory"||name=="사망"||name=="재장전"||name=="승리"||name=="승리2"||name=="승리Loop"){isload=false}
 		gameview.focusRole.state.setAnimationByName(0,name,isload);
-		if(name=="victory"||name=="victory2"||name=="승리"||name=="승리2"){gameview.focusRole.state.addAnimationByName(0,"승리Loop",true,0)}
+		if(name=="victory"||name=="victory2"||name=="승리"||name=="승리2"||name=="승리Loop"){gameview.focusRole.state.addAnimationByName(0,"승리",true,0)}
 		gameview.focusRole.update(0)
 	},
 	addRole:function(skeletonData,selectedAnimation){
