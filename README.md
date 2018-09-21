@@ -1,6 +1,6 @@
-# [Girls' FrontLine  SD Simulator](https://github.com/ergo9ine/gf-spine-simulator)
+# 소녀전선 인형 시뮬레이터
 
-![미리보기](https://github.com/ergo9ine/gf-spine-simulator/blob/master/images/preview.png)
+![미리보기](https://raw.githubusercontent.com/wsmwason/gf-spine-simulator/master/images/preview.png)
 
 이 프로젝트는 cullus 의 소녀전선Q시뮬레이터를 기반으로 만들어졌습니다.[cullus/gfSpinePiXi](https://github.com/cullus/gfSpinePiXi)
 그러나 일부 기능을 더 추가하기 위해서 [소녀전선 DB](https://gf.fws.tw/) 를 통합시켰습니다.
