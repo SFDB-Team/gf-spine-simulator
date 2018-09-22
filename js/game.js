@@ -333,7 +333,7 @@ var gameview={
 		}
 		gameview.renderer.render(gameview.stage)
 	},
-	changeAnimation:function(num){ //인수 받아야함
+	changeAnimation:function(num){
 		var name=gameview.focusRole.spineData.animations[num].name;
 		var isload=true;
 		if(name=="die"||name=="reload"||name=="victory"||name=="사망"||name=="재장전"||name=="승리"||name=="승리2"||name=="승리Loop"){isload=false}
@@ -367,7 +367,7 @@ var gameview={
 			stringAnimations+="<option"+defaultAnimation+">"+aniName+"</option>"
 		}
 		gameview.selectAnimation.html(stringAnimations);
-		gameview.changeAnimation(defaultAnimationId); //인수 보내야함
+		gameview.changeAnimation(defaultAnimationId);
 			role.x=skeletonData.x||gameview.selectX;
 			role.y=skeletonData.y||gameview.selectY;
 			role.scale.x=(isMirror)?scale*-1:scale||gameview.selectScale;
@@ -393,7 +393,6 @@ var gameview={
 		function DragStart(event){
 			this.data=event.data,this.alpha=0.5,this.dragging=true;
 			gameview.selectCharacter[0].selectedIndex=this.parent.children.indexOf(this)-1;
-			//console.log(this)
 			gameview.selectCharacter.change()
 		};
 		function DragEnd(){this.alpha=1,this.dragging=false,this.data=null};
@@ -434,8 +433,7 @@ var gameview={
 var gvHandler={
 	saveStage:function(gameview){
 		var jsonData={
-			'ro':[],
-			'bg':''
+			'ro':[],'bg':''
 		};
 		for (i in gameview.role){
 			jsonData.ro.push({
@@ -457,6 +455,7 @@ var gvHandler={
 		download_png(gameview.renderer,gameview.stage,"screenshot");
 	}
 };
+game.setGameviewHandler(gvHandler);
 function copyToClipboard(val){
 	var t=document.createElement("textarea");
 	document.body.appendChild(t);
@@ -464,13 +463,12 @@ function copyToClipboard(val){
 	t.select();
 	document.execCommand('copy');
 	document.body.removeChild(t)
-}
-game.setGameviewHandler(gvHandler);
-function download_png(renderer, sprite, fileName) {
+};
+function download_png(renderer,sprite,fileName){
 	renderer.extract.canvas(sprite).toBlob(function(b){
 		var a=document.createElement("a");
 		document.body.append(a);
 		a.download=fileName+".png",a.href=URL.createObjectURL(b);
-		;a.click(),a.remove()
+		a.click(),a.remove();
 	},"image/png");
 };
