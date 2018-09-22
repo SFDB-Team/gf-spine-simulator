@@ -1,9 +1,14 @@
-$(document).ready(function(){game.init()});
-if(typeof resPasePath==='undefined'){var resPasePath=''};
+if(document.readyState==="loading"){
+	document.addEventListener("DOMContentLoaded",()=>{
+		game.init()
+	})
+}else{game.init()};
+if(void 0===resPasePath)var resPasePath="";
 var game={
-	init:function(){
+	init:()=>{
+		for(var i of document.querySelectorAll("footer>p")) i.classList.add("text-muted");
 		game.girls=new Girls(resPasePath+"character/");
-		game.background=["Airport","Bridge","Forest","IceLake","Snow","Street","MindMap","MindMap2"];
+		game.background="Airport Bridge Forest IceLake Snow Street MindMap MindMap2".split(" ");
 		preview.init();
 		gameview.init();
 		var stageLoaded=false;
@@ -16,65 +21,73 @@ var game={
 			preview.loadStage(hash);
 			stageLoaded=true
 		}
-		if(stageLoaded==false){gameview.selectBackground.val('Airport').change()}
+		0==stageLoaded&&(gameview.selectBackground.value="Airport",gameview.changeBackground(1));
 	},
-	setGameviewHandler:function(handler){gameview.handler=handler}
+	setGameviewHandler:handler=>{gameview.handler=handler}
 };
 var preview={
-	init:function(){
-		preview.canvas=$(".preCanvas");
-		preview.selectCharacter=$(".preSelectCharacter>select");
-		preview.selectSkin=$(".preSelectSkin>select");
-		preview.selectAnimation=$(".preSelectAnimation>select");
-		preview.stopRole=$(".preStopRole");
-		preview.addRole=$(".preAddRole");
+	init:()=>{
+		preview.canvas=document.querySelector(".preCanvas");
+		preview.selectCharacter=document.querySelector(".preSelectCharacter>select");
+		preview.selectSkin=document.querySelector(".preSelectSkin>select");
+		preview.selectAnimation=document.querySelector(".preSelectAnimation>select");
+		preview.stopRole=document.querySelector(".preStopRole");
+		preview.addRole=document.querySelector(".preAddRole");
 		preview.isUpdate=true;
 		var stringCharacter="<option>선택하세요</option>";
 		for(var type in girlsOptions){
-			stringCharacter+='<optgroup label="'+type+'">';
+			stringCharacter+=`<optgroup label=${type}>`;
 			for(var name in girlsOptions[type]){
 				var optionName=(girlsDataKr[name])?girlsDataKr[name]:girlsOptions[type][name];
-				stringCharacter+='<option value="'+name+'">'+optionName+'</option>';
+				stringCharacter+=`<option value=${name}>${optionName}</option>`;
 			}
 			stringCharacter+='</optgroup>'
 		}
-		preview.selectCharacter.html(stringCharacter);
-		preview.selectCharacter.change(function(){
-			if(this.selectedIndex==0){return};
-			var name=$(this).val();
-			var type=$(':selected',this).parent().attr('label');
-			var strSkinsOption="";
-			if(!girlsData[name]){return};
-			for(var skin in girlsData[name]){
-				strSkinsOption+="<option value=\""+skin+"\">"+skin+"</option>";
+		preview.selectCharacter.innerHTML=stringCharacter;
+		preview.selectCharacter.addEventListener("change",function(){
+			if(this.selectedIndex==0) return;
+			var name=this.value,strSkinsOption="";
+			girlsData[name]||return;
+			for(skin in girlsData[name]){
+				var skinName=skin;
+				"r"!=skin.replace(name,"").slice(0,1)&&"R"!=skin.replace(name,"").slice(0,1)||(skinName="숙소 "+skin.slice(1));
+				strSkinsOption+=`<option value="${skin}">${skinName}</option>`;
 			}
-			preview.selectSkin.html(strSkinsOption);
-			preview.selectSkin.change();
+			preview.selectSkin.innerHTML=strSkinsOption;
+			game.girls.load(preview.selectCharacter.value,preview.selectSkin.value,preview)
 			preview.stage.interactive=true
 		});
-		preview.selectSkin.change(function(){game.girls.load(preview.selectCharacter.val(),preview.selectSkin.val(),preview)});
-		preview.selectAnimation.change(function(){preview.changeAnimation(this.selectedIndex)});
-		preview.addRole.click(function(){if(preview.skeletonData){gameview.addRole(preview.skeletonData,preview.selectAnimation.val())}});
-		preview.stopRole.click(function(){
+		preview.selectSkin.addEventListener("change",()=>{
+			game.girls.load(preview.selectCharacter.value,preview.selectSkin.value,preview)
+		});
+		preview.selectAnimation.addEventListener("change",function(){
+			"animation"==preview.skeletonData.animations[0].name?preview.changeAnimation(this.selectedIndex+1):preview.changeAnimation(this.selectedIndex);
+		});
+		preview.addRole.addEventListener("click",()=>{
+			preview.skeletonData&&gameview.addRole(preview.skeletonData,preview.selectAnimation.value)
+		});
+		preview.stopRole.addEventListener("click",()=>{
 			if(preview.isUpdate){
 				preview.isUpdate=false;
-				preview.stopRole.html("재생").toggleClass("btn-success btn-secondary");
+				preview.stopRole.textContent="재생";
+				preview.stopRole.classList.toggle("btn-success")
 			}else{
 				preview.isUpdate=true;
-				preview.stopRole.html("정지").toggleClass("btn-success btn-secondary");
+				preview.stopRole.textContent="정지";
+				preview.stopRole.classList.toggle("btn-success")
 			}
 		});
 		preview.selectScale=1;
-		preview.selectX=preview.canvas.width()*0.5;
-		preview.selectY=preview.canvas.height()*0.85;
+		preview.selectX=preview.canvas.clientWidth*0.5;
+		preview.selectY=preview.canvas.clientHeight*0.85;
 		preview.stage=new PIXI.Container;
-		preview.renderer=PIXI.autoDetectRenderer(preview.canvas.width(),preview.canvas.height(),{transparent:true});
+		preview.renderer=PIXI.autoDetectRenderer(preview.canvas.clientWidth,preview.canvas.clientHeight,{transparent:true});
 		preview.lastTime=new Date().getTime();
 		preview.nowTime=new Date().getTime();
 		preview.animationFrame=window.requestAnimationFrame(preview.animate);
-		preview.canvas.html(preview.renderer.view)
+		preview.canvas.appendChild(preview.renderer.view)
 	},
-	changeCanvas:function(skeletonData){
+	changeCanvas:skeletonData=>{
 		preview.stage.removeChildren();
 		preview.name=skeletonData.name;
 		preview.skeletonData=skeletonData;
@@ -83,57 +96,54 @@ var preview={
 			preview.spine.y=preview.selectY;
 			preview.spine.scale.x=preview.selectScale;
 		preview.spine.scale.y=preview.selectScale;
-		var animations=preview.spine.spineData.animations;
-		var aniName=animations;
-		var stringAnimations="";
-		var anilength=animations.length;
-		var n,nowSkin=0;
-		for(var i=0;i<anilength;i++){
-			aniName[i].name=="attack"?aniName[i].name="공격":
-			aniName[i].name=="attack2"?aniName[i].name="보조공격":
-			aniName[i].name=="spattack"?aniName[i].name="스킬":
-			aniName[i].name=="bossskill"?aniName[i].name="스킬":
-			aniName[i].name=="bossskillactive"?aniName[i].name="스킬발동":
-			aniName[i].name=="s"?aniName[i].name="스킬":
-			aniName[i].name=="sp"?aniName[i].name="스킬":
-			aniName[i].name=="sp1"?aniName[i].name="특수행동1":
-			aniName[i].name=="reload"?aniName[i].name="재장전":
-			aniName[i].name=="victory"?aniName[i].name="승리":
-			aniName[i].name=="victory2"?aniName[i].name="승리2":
-			aniName[i].name=="victoryloop"?aniName[i].name="승리Loop":
-			aniName[i].name=="die"?aniName[i].name="사망":
-			aniName[i].name=="die2"?aniName[i].name="사망2":
-			aniName[i].name=="die3"?aniName[i].name="사망3":
-			aniName[i].name=="move"?aniName[i].name="이동":
-			aniName[i].name=="wait"?aniName[i].name="대기":
-			aniName[i].name=="wait2"?aniName[i].name="대기2":
-			aniName[i].name=="wait22"?aniName[i].name="대기22":
-			aniName[i].name=="lying"?aniName[i].name="휴식":
-			aniName[i].name=="sit"?aniName[i].name="착석":
-			aniName[i].name=="pick"?aniName[i].name="들어올리기":
-			aniName[i].name=="work1"?aniName[i].name="행동1":
-			aniName[i].name=="work2"?aniName[i].name="행동2":
-			aniName[i].name=="action"?aniName[i].name="행동":
-			aniName[i].name=="action1"?aniName[i].name="행동1":
-			aniName[i].name=="action2"?aniName[i].name="행동2":
-			aniName[i].name=="action3"?aniName[i].name="행동3":
-			aniName[i].name=="dance1"?aniName[i].name="춤1":
-			aniName[i].name=="dance2"?aniName[i].name="춤2":
-			aniName[i].name=="dance3"?aniName[i].name="춤3":
-			aniName[i].name=="change1"?aniName[i].name="변화1":
-			aniName[i].name=="change2"?aniName[i].name="변화2":
-			aniName[i].name=="change3"?aniName[i].name="변화3":
-			aniName[i].name=aniName[i].name
-		}
-		for(var i=0;i<anilength;i++){stringAnimations+="<option value=\""+animations[i].name+"\">"+aniName[i].name+"</option>"}
-		preview.selectAnimation.html(stringAnimations);
-		preview.changeAnimation(0);
+		var stringAnimations="",n,nowSkin=0;
+		for(i of preview.spine.spineData.animations){
+			i.name=="attack"?i.name="공격":
+			i.name=="attack2"?i.name="보조공격":
+			i.name=="spattack"?i.name="스킬":
+			i.name=="bossskill"?i.name="스킬":
+			i.name=="bossskillactive"?i.name="스킬발동":
+			i.name=="s"?i.name="스킬":
+			i.name=="sp"?i.name="스킬":
+			i.name=="sp1"?i.name="특수행동1":
+			i.name=="reload"?i.name="재장전":
+			i.name=="victory"?i.name="승리":
+			i.name=="victory2"?i.name="승리2":
+			i.name=="victoryloop"?i.name="승리Loop":
+			i.name=="die"?i.name="사망":
+			i.name=="die2"?i.name="사망2":
+			i.name=="die3"?i.name="사망3":
+			i.name=="move"?i.name="이동":
+			i.name=="wait"?i.name="대기":
+			i.name=="wait2"?i.name="대기2":
+			i.name=="wait22"?i.name="대기22":
+			i.name=="lying"?i.name="휴식":
+			i.name=="sit"?i.name="앉기":
+			i.name=="pick"?i.name="들어올리기":
+			i.name=="work1"?i.name="행동1":
+			i.name=="work2"?i.name="행동2":
+			i.name=="action"?i.name="행동":
+			i.name=="action1"?i.name="행동1":
+			i.name=="action2"?i.name="행동2":
+			i.name=="action3"?i.name="행동3":
+			i.name=="dance1"?i.name="춤1":
+			i.name=="dance2"?i.name="춤2":
+			i.name=="dance3"?i.name="춤3":
+			i.name=="change1"?i.name="변화1":
+			i.name=="change2"?i.name="변화2":
+			i.name=="change3"?i.name="변화3":
+			i.name=i.name;
+			if(i.name=="animation") continue;
+			stringAnimations+=`<option>${i.name}</option>`
+		};
+		preview.selectAnimation.innerHTML=stringAnimations;
+		preview.spine.spineData.animations[0].name=="animation"?preview.changeAnimation(1):preview.changeAnimation(0);
 		preview.spine.skeleton.setToSetupPose();
 		preview.spine.update(0);
 		preview.spine.autoUpdate=false;
 		preview.stage.addChild(preview.spine);
 		var Canilength=preview.stage.children[0].state.data.skeletonData.animations.length;
-		preview.stage.on('pointerdown',function(){
+		preview.stage.on('pointerdown',()=>{
 			if(nowSkin>=Canilength){
 				preview.changeAnimation(0);
 				nowSkin=0
@@ -141,162 +151,180 @@ var preview={
 				preview.changeAnimation(nowSkin);
 				nowSkin+=1
 			};
-			preview.selectAnimation.val(preview.stage.children[0].state.tracks[0].animation.name)
+			preview.selectAnimation.value=preview.stage.children[0].state.tracks[0].animation.name
 		})
 	},
-	loadToStage:function(defaultStageData,spineData){
-		for(i in defaultStageData){
-			var role=defaultStageData[i];
-			var spine=spineData[role.name][role.skin];
-				spine.code=role.name;
-				spine.skin=role.skin;
-				spine.x=role.x;
-				spine.y=role.y;
-				spine.scale=role.scale;
-				spine.animation=role.animation;
-			gameview.addRole(spine,role.animation)
+	loadToStage:(defaultStageData,spineData)=>{
+		for(i of defaultStageData){
+			var spine=spineData[i.name][i.skin];
+				spine.code=i.name;
+				spine.skin=i.skin;
+				spine.x=i.x;
+				spine.y=i.y;
+				spine.scale=i.scale;
+				spine.animation=i.animation;
+			gameview.addRole(spine,i.animation)
 		}
 	},
-	animate:function(){
+	animate:()=>{
 		preview.lastTime=preview.nowTime;
 		preview.nowTime=new Date().getTime();
 		preview.animationFrame=window.requestAnimationFrame(preview.animate);
-		if(preview.isUpdate&&preview.spine){preview.spine.update((preview.nowTime-preview.lastTime)/1000)}
+		if(preview.isUpdate&&preview.spine) preview.spine.update((preview.nowTime-preview.lastTime)/1000);
 		preview.renderer.render(preview.stage)
 	},
-	changeAnimation:function(num){
-		var name=preview.spine.spineData.animations[num].name;
-		var isload=true;
-		if(name=="die"||name=="reload"||name=="victory")
-			isload=false;
+	changeAnimation:num=>{
+		var name=preview.spine.spineData.animations[num].name,isload=true;
+		if(name=="die"||name=="reload"||name=="victory") isload=false;
 		preview.spine.state.setAnimationByName(0,name,isload,0);
 		preview.spine.update(0)
 	},
-	loadStage:function(jsonString){
+	loadStage:jsonString=>{
 		var defaultStageData=JSON.parse(decodeURIComponent(jsonString));
 		if(defaultStageData.ro){
-			for(i in defaultStageData.ro){
-				var role=defaultStageData.ro[i];
-				game.girls.loadAsync(role.name,role.skin,preview);
+			for(i of defaultStageData.ro){
+				game.girls.loadAsync(i.name,i.skin,preview)
 			}
 			game.girls.loadAll(defaultStageData.ro)
 		}
-		gameview.selectBackground.val(defaultStageData.bg).change()
+		gameview.selectBackground.value=defaultStageData.bg;
 	}
 };
 var gameview={
 	role:[],
 	bgImage:[],
 	handler:null,
-	init:function(){
-		gameview.canvas=$('.gameCanvas');
-		gameview.selectBackground=$(".gameSelectBackground>select");
-		gameview.showFPS=$(".gameShowFPS>input");
-		gameview.selectCharacter=$(".gameSelectCharacter>select");
-		gameview.selectAnimation=$(".gameSelectAnimation>select");
-		gameview.selectposX=$(".gameSelectposX>input");
-		gameview.selectposY=$(".gameSelectposY>input");
-		gameview.selectscale=$(".gameSelectscale>input");
-		gameview.turnRole=$(".gameTurnRole");
-		gameview.stopRole=$(".gameStopRole");
-		gameview.saveStageBtn=$(".gameSaveStage");
-		gameview.savePngBtn=$(".gameSavePng");
-		gameview.removeRole=$(".gameRemoveRole");
-		gameview.removeAllRole=$(".gameRemoveAllRole");
-		gameview.timestop=$(".gameTimestop")
+	init:()=>{
+		gameview.canvas=document.querySelector('.gameCanvas');
+		gameview.selectBackground=document.querySelector(".gameSelectBackground>select");
+		gameview.showFPS=document.querySelector(".gameShowFPS>input");
+		gameview.selectCharacter=document.querySelector(".gameSelectCharacter>select");
+		gameview.selectAnimation=document.querySelector(".gameSelectAnimation>select");
+		gameview.selectposX=document.querySelector(".gameSelectposX>input");
+		gameview.selectposY=document.querySelector(".gameSelectposY>input");
+		gameview.selectscale=document.querySelector(".gameSelectscale>input");
+		gameview.turnRole=document.querySelector(".gameTurnRole");
+		gameview.stopRole=document.querySelector(".gameStopRole");
+		gameview.saveStageBtn=document.querySelector(".gameSaveStage");
+		gameview.savePngBtn=document.querySelector(".gameSavePng");
+		gameview.removeRole=document.querySelector(".gameRemoveRole");
+		gameview.removeAllRole=document.querySelector(".gameRemoveAllRole");
+		gameview.timestop=document.querySelector(".gameTimestop");
 		gameview.isUpdate=true;
 		gameview.isShowFPS=true;
-		timeVal=[],
-		backgroundlength=game.background.length;
+		timeVal=[];
 		var stringBackground="<option>없음</option>";
-		for(var i=0;i<backgroundlength;i++){stringBackground+="<option>"+game.background[i]+"</option>"}
-		gameview.selectBackground.html(stringBackground);
-		gameview.selectBackground.change(function(){gameview.changeBackground(this.selectedIndex)});
-		gameview.showFPS.change(function(){gameview.isShowFPS=this.checked});
-		gameview.saveStageBtn.click(function(){gameview.saveStage()});
-		gameview.savePngBtn.click(function(){gameview.savePng()});
+		for(i of game.background) stringBackground+=`<option>${i}</option>`;
+		gameview.selectBackground.innerHTML=stringBackground;
+		gameview.selectBackground.addEventListener("change",function(){
+			gameview.changeBackground(this.selectedIndex)
+		});
+		gameview.showFPS.addEventListener("change",function(){
+			gameview.isShowFPS=this.checked
+		});
+		gameview.saveStageBtn.addEventListener("click",()=>{
+			gameview.saveStage()
+		});
+		gameview.savePngBtn.addEventListener("click",()=>{
+			gameview.savePng()
+		});
 		var stringCharacter="<option>인형을 선택하세요</option>";
-		gameview.selectCharacter.html(stringCharacter);
-		gameview.selectCharacter.change(function(){
-			if(this.selectedIndex==0){return};
+		gameview.selectCharacter.innerHTML=stringCharacter;
+		function selectC(){
+			if(this.selectedIndex==0) return;
 			var role=gameview.stage.children[this.selectedIndex+1];
-			gameview.selectposX.val(role.x);
-			gameview.selectposY.val(role.y);
-			gameview.selectscale.val(Math.abs(role.scale.x)*1000);
+			gameview.selectposX.value=role.x;
+			gameview.selectposY.value=role.y;
+			gameview.selectscale.value=Math.abs(role.scale.x)*1000;
 			gameview.focusRole=role;
 			var stringAnimations="";
-			for(var i=0;i<role.spineData.animations.length;i++){
+			for(i of role.spineData.animations){
+				if(i.name=="animation") continue;
 				var defaultAnimation="";
-				if(role.animation==role.spineData.animations[i].name){defaultAnimation=" selected"}
-				stringAnimations+="<option"+defaultAnimation+">"+role.spineData.animations[i].name+"</option>";
-			}
-			gameview.selectAnimation.html(stringAnimations)
+				if(role.animation==i.name) defaultAnimation=" selected";
+				stringAnimations+=`<option value=${defaultAnimation}>${i.name}</option>`
+			};
+			gameview.selectAnimation.innerHTML=stringAnimations;
 			if(timeVal[this.selectedIndex-1]==0){
-				gameview.timestop.html("재생").addClass("btn-success")
+				gameview.timestop.textContent="재생";
+				gameview.timestop.classList.add("btn-success")
 			}else{
-				gameview.timestop.html("정지").removeClass("btn-success")
+				gameview.timestop.textContent="정지";
+				gameview.timestop.classList.remove("btn-success")
 			}
+		}
+		gameview.selectCharacter.addEventListener("click",selectC);
+		gameview.selectCharacter.addEventListener("change",selectC);
+		var charOn=gameview.selectCharacter.selectedIndex,stringAnimation="<option>모션이 표시됩니다.</option>";
+		gameview.selectAnimation.innerHTML=stringAnimation;
+		gameview.selectCharacter.addEventListener("change",function(){
+				if(gameview.role[gameview.selectCharacter.selectedIndex-1].spineData.animations[0].name=="animation"){
+					gameview.changeAnimation(this.selectedIndex+1)
+				}else{
+					gameview.changeAnimation(this.selectedIndex)
+				}
 		});
-		var charOn=gameview.selectCharacter[0].selectedIndex;
-		var stringAnimation="<option>모션이 표시됩니다.</option>";
-		gameview.selectAnimation.html(stringAnimation);
-		gameview.selectAnimation.change(function(){gameview.changeAnimation(this.selectedIndex)});
-		gameview.removeRole.click(function(){
-			charOn=gameview.selectCharacter[0].selectedIndex;
-			if(charOn==0){return};
+		gameview.removeRole.addEventListener("click",()=>{
+			charOn=gameview.selectCharacter.selectedIndex;
+			if(charOn==0) return;
 			gameview.stage.removeChild(gameview.role[charOn-1]);
-			gameview.selectCharacter[0].remove(charOn);
+			gameview.selectCharacter.remove(charOn);
 			gameview.role.splice(charOn-1,charOn);
 			gameview.focusRole=null;
-			gameview.selectAnimation.html(stringAnimation);
+			gameview.selectAnimation.innerHTML=stringAnimation;
 			timeVal.splice(charOn-1,1);
-			gameview.timestop.html("정지").removeClass("btn-success")
+			gameview.timestop.textContent="정지";
+			gameview.timestop.classList.remove("btn-success")
 		});
-		gameview.timestop.click(function(){
-			charOn=gameview.selectCharacter[0].selectedIndex;
-			if(charOn==0){return};
+		gameview.timestop.addEventListener("click",()=>{
+			charOn=gameview.selectCharacter.selectedIndex;
+			if(charOn==0) return;
+			if(gameview.role[charOn-1].state.tracks[0]==null) return;
 			if(gameview.role[charOn-1].state.tracks[0].timeScale==1){
 				gameview.role[charOn-1].state.tracks[0].timeScale=0;
-				gameview.timestop.html("재생").addClass("btn-success");
+				gameview.timestop.textContent="재생";
+				gameview.timestop.classList.toggle("btn-success");
 				timeVal[charOn-1]=0;
 			}else{
 				gameview.role[charOn-1].state.tracks[0].timeScale=1;
-				gameview.timestop.html("정지").removeClass("btn-success");
+				gameview.timestop.textContent="정지";
+				gameview.timestop.classList.toggle("btn-success");
 				timeVal[charOn-1]=1;
 			}
 		});
-		gameview.removeAllRole.click(function(){
-			var n=gameview.role.length;
-			for(var i=0;i<n;i++){gameview.stage.removeChild(gameview.role[i])};
-			gameview.selectCharacter.html(stringCharacter);
-			gameview.selectAnimation.html(stringAnimation);
-			gameview.role.splice(0,n);
+		gameview.removeAllRole.addEventListener("click",()=>{
+			for(var i of gameview.role) gameview.stage.removeChild(i);
+			gameview.selectCharacter.innerHTML=stringCharacter;
+			gameview.selectAnimation.innerHTML=stringAnimation;
+			gameview.role=[];
 			gameview.focusRole=null
 		});
-		gameview.turnRole.click(function(){
-			charOn=gameview.selectCharacter[0].selectedIndex;
-			if(charOn==0){return};
-			gameview.focusRole.scale.x*=-1}
-		);
-		gameview.stopRole.click(function(){
-			charOn=gameview.selectCharacter[0].selectedIndex;
-			if(charOn==0){return};
+		gameview.turnRole.addEventListener("click",()=>{
+			charOn=gameview.selectCharacter.selectedIndex;
+			if(charOn==0) return;
+			gameview.focusRole.scale.x*=-1
+		});
+		gameview.stopRole.addEventListener("click",()=>{
+			charOn=gameview.selectCharacter.selectedIndex;
+			if(charOn==0) return;
 			if(gameview.isUpdate){
 				gameview.isUpdate=false;
-				gameview.stopRole.html("모두재생").toggleClass("btn-success btn-secondary");
+				gameview.stopRole.textContent="모두재생";
+				gameview.stopRole.classList.toggle("btn-success");
 			}else{
 				gameview.isUpdate=true;
-				gameview.stopRole.html("모두정지").toggleClass("btn-success btn-secondary");
+				gameview.stopRole.textContent="모두정지";
+				gameview.stopRole.classList.toggle("btn-success");
 			}
 		});
 		gameview.selectX=1920/2;
 		gameview.selectY=1080/2;
 		gameview.selectScale=1;
-		gameview.selectposX.attr("max",1920);
-		gameview.selectposY.attr("max",1080);
-		gameview.selectposX.val(gameview.selectX);
-		gameview.selectposY.val(gameview.selectY);
-		gameview.selectscale.val(gameview.selectScale*1000);
+		gameview.selectposX.setAttribute("max","1920");
+		gameview.selectposY.setAttribute("max","1080");
+		gameview.selectposX.value=gameview.selectX;
+		gameview.selectposY.value=gameview.selectY;
+		gameview.selectscale.value=gameview.selectScale*1000;
 		gameview.stage=new PIXI.Container;
 		gameview.renderer=PIXI.autoDetectRenderer(1920,1080,{transparent:true});
 		gameview.background=new PIXI.Sprite(PIXI.Texture.EMPTY);
@@ -308,66 +336,60 @@ var gameview={
 		gameview.fpsText.y=0;
 		gameview.stage.addChild(gameview.fpsText);
 		gameview.animationFrame=window.requestAnimationFrame(gameview.animate);
-		gameview.canvas.html(gameview.renderer.view)
+		gameview.canvas.appendChild(gameview.renderer.view)
 	},
-	animate:function(){
+	animate:()=>{
 		gameview.lastTime=gameview.nowTime;
 		gameview.nowTime=new Date().getTime();
 		gameview.animationFrame=window.requestAnimationFrame(gameview.animate);
-		if(gameview.isShowFPS)
-			gameview.fpsText.text=Math.floor(1000/(gameview.nowTime-gameview.lastTime));
-		else
-			gameview.fpsText.text="";
-		if(gameview.isUpdate)
-			for(var i=0;i<gameview.role.length;i++)
-				gameview.role[i].update((gameview.nowTime-gameview.lastTime)/1000);
+		if(gameview.isShowFPS) gameview.fpsText.text=Math.floor(1000/(gameview.nowTime-gameview.lastTime));
+		else gameview.fpsText.text="";
+		if(gameview.isUpdate){
+			for(var i of gameview.role) i.update((gameview.nowTime-gameview.lastTime)/1000)
+		};
 		if(gameview.focusRole){
-			gameview.focusRole.x=gameview.selectposX.val();
-			gameview.focusRole.y=gameview.selectposY.val();
+			gameview.focusRole.x=gameview.selectposX.value;
+			gameview.focusRole.y=gameview.selectposY.value;
 			if(gameview.focusRole.scale.x>0){
-				gameview.focusRole.scale.x=gameview.selectscale.val()/1000
+				gameview.focusRole.scale.x=gameview.selectscale.value/1000
 			}else{
-				gameview.focusRole.scale.x=-gameview.selectscale.val()/1000
+				gameview.focusRole.scale.x=-gameview.selectscale.value/1000
 			}
-			gameview.focusRole.scale.y=gameview.selectscale.val()/1000
+			gameview.focusRole.scale.y=gameview.selectscale.value/1000
 		}
 		gameview.renderer.render(gameview.stage)
 	},
-	changeAnimation:function(num){ //인수 받아야함
-		var name=gameview.focusRole.spineData.animations[num].name;
-		var isload=true;
-		if(name=="die"||name=="reload"||name=="victory"||name=="사망"||name=="재장전"||name=="승리"||name=="승리2"||name=="승리Loop"){isload=false}
+	changeAnimation:num=>{
+		var name=gameview.focusRole.spineData.animations[num].name,isload=true;
+		if(name=="die"||name=="reload"||name=="victory"||name=="사망"||name=="재장전"||name=="승리"||name=="승리2"||name=="승리Loop") isload=false;
 		gameview.focusRole.state.setAnimationByName(0,name,isload);
-		if(name=="victory"||name=="victory2"||name=="승리"||name=="승리2"||name=="승리Loop"){gameview.focusRole.state.addAnimationByName(0,"승리",true,0)}
+		if(name=="victory"||name=="victory2"||name=="승리"||name=="승리2"||name=="승리Loop") gameview.focusRole.state.addAnimationByName(0,"승리",true,0);
 		gameview.focusRole.update(0)
 	},
-	addRole:function(skeletonData,selectedAnimation){
-		var role=gameview.role[gameview.role.length]=new PIXI.spine.Spine(skeletonData);
-		var name=skeletonData.name;
-		gameview.selectposX.val(skeletonData.x||gameview.selectX);
-		gameview.selectposY.val(skeletonData.y||gameview.selectY);
-		var scale=skeletonData.scale||gameview.selectScale;
-		var isMirror=false;
-		timeVal[gameview.selectCharacter[0].selectedIndex]=1;
+	addRole:(skeletonData,selectedAnimation)=>{
+		var role=gameview.role[gameview.role.length]=new PIXI.spine.Spine(skeletonData),name=skeletonData.name;
+		gameview.selectposX.value=skeletonData.x||gameview.selectX;
+		gameview.selectposY.value=skeletonData.y||gameview.selectY;
+		var scale=skeletonData.scale||gameview.selectScale,isMirror=false;
+		timeVal[gameview.selectCharacter.selectedIndex]=1;
 		if(scale<0){
 			scale=scale*-1;
 			isMirror=true
 		}
-		gameview.selectscale.val(scale*1000);
+		gameview.selectscale.value=scale*1000;
 		gameview.focusRole=role;
-		var stringAnimations="";
-		var defaultAnimationId=0;
-		for(var i=0;i<role.spineData.animations.length;i++){
+		var stringAnimations="",defaultAnimationId=0;
+		for(var i of role.spineData.animations){
 			var defaultAnimation="";
-			if(selectedAnimation==role.spineData.animations[i].name){
+			if(selectedAnimation==i.name){
 				defaultAnimation=" selected";
-				defaultAnimationId=i;
 			}
-			var aniName=role.spineData.animations[i].name;
-			stringAnimations+="<option"+defaultAnimation+">"+aniName+"</option>"
+			if(i.name=="animation") continue;
+			stringAnimations+=`<option ${defaultAnimation}>${i.name}</option>`
 		}
-		gameview.selectAnimation.html(stringAnimations);
-		gameview.changeAnimation(defaultAnimationId); //인수 보내야함
+		gameview.selectAnimation.innerHTML=stringAnimations;
+		if(preview.stage.children[0].spineData.animations[0].name=="animation"){defaultAnimationId=1};
+		gameview.changeAnimation(defaultAnimationId);
 			role.x=skeletonData.x||gameview.selectX;
 			role.y=skeletonData.y||gameview.selectY;
 			role.scale.x=(isMirror)?scale*-1:scale||gameview.selectScale;
@@ -376,11 +398,15 @@ var gameview={
 			role.skeleton.setToSetupPose();
 			role.update(0);
 			role.autoUpdate=false;
-		var codeName=(girlsDataKr[skeletonData.code])?girlsDataKr[skeletonData.code]:name;
-		if(codeName==name){name="기본"}
-		var stringCharacter="<option>"+codeName+" (스킨:"+name+")</option>";
-		gameview.selectCharacter.append(stringCharacter);
-		gameview.selectCharacter[0].selectedIndex=gameview.role.length;
+		var name2;
+		for(i in girlsOptions){
+			if(girlsOptions[i][skeletonData.code]) break
+			var name2=girlsOptions[i][skeletonData.code];
+		}
+		var codeName=girlsDataKr[skeletonData.code]?girlsDataKr[skeletonData.code]:name;
+		var stringCharacter=`<option>${name2} (스킨:${name})</option>`;
+		gameview.selectCharacter.innerHTML+=stringCharacter;
+		gameview.selectCharacter.selectedIndex=gameview.role.length;
 		gameview.stage.addChild(role);
 		var mynum=gameview.role.length-1;
 		gameview.role[mynum].interactive=true;
@@ -392,20 +418,21 @@ var gameview={
 			.on('pointermove',DragMove);
 		function DragStart(event){
 			this.data=event.data,this.alpha=0.5,this.dragging=true;
-			gameview.selectCharacter[0].selectedIndex=this.parent.children.indexOf(this)-1;
-			//console.log(this)
-			gameview.selectCharacter.change()
+			gameview.selectCharacter.selectedIndex=this.parent.children.indexOf(this)-1
+			gameview.selectCharacter.click();
 		};
-		function DragEnd(){this.alpha=1,this.dragging=false,this.data=null};
+		function DragEnd(){
+			this.alpha=1,this.dragging=false,this.data=null
+		};
 		function DragMove(){
 			if(this.dragging){
 				var newPo=this.data.getLocalPosition(this.parent);
-				gameview.selectposX.val(newPo.x);
-				gameview.selectposY.val(newPo.y)
+				gameview.selectposX.value=newPo.x;
+				gameview.selectposY.value=newPo.y
 			}
 		}
 	},
-	changeBackground:function(n){
+	changeBackground:n=>{
 		if(n==0&&gameview.background){
 			gameview.background.texture=PIXI.Texture.EMPTY;
 			gameview.background.filename='없음';
@@ -418,8 +445,8 @@ var gameview={
 			gameview.background.scale.y=gameview.renderer.height/gameview.bgImage[n-1].height
 		}else{
 			var name="bg"+game.background[n-1];
-			var path=resPasePath+"background/"+game.background[n-1]+".jpg"
-			PIXI.loader.add(name,path).load(function(loader,resources){
+			var path=`${resPasePath}background/${game.background[n-1]}.jpg`
+			PIXI.loader.add(name,path).load((loader,resources)=>{
 				gameview.bgImage[n-1]=resources[name].texture;
 				gameview.background.filename=game.background[n-1];
 				gameview.background.texture=gameview.bgImage[n-1];
@@ -432,19 +459,18 @@ var gameview={
 	savePng:function(){this.handler.savePng(gameview)}
 }
 var gvHandler={
-	saveStage:function(gameview){
+	saveStage:gameview=>{
 		var jsonData={
-			'ro':[],
-			'bg':''
+			'ro':[],'bg':''
 		};
-		for (i in gameview.role){
+		for (i of gameview.role){
 			jsonData.ro.push({
-				'name':gameview.role[i].stateData.skeletonData.code,
-				'skin':gameview.role[i].stateData.skeletonData.skin,
-				'x':gameview.role[i].x,
-				'y':gameview.role[i].y,
-				'scale':gameview.role[i].scale.x,
-				'animation':gameview.role[i].animation
+				'name':i.stateData.skeletonData.code,
+				'skin':i.stateData.skeletonData.skin,
+				'x':i.x,
+				'y':i.y,
+				'scale':i.scale.x,
+				'animation':i.animation
 			})
 		}
 		jsonData.bg=gameview.background.filename;
@@ -453,10 +479,11 @@ var gvHandler={
 		copyToClipboard(shareUrl);
 		alert("복사되었으니 주소창에 붙여넣기 하세요!")
 	},
-	savePng:function(gameview){
+	savePng:gameview=>{
 		download_png(gameview.renderer,gameview.stage,"screenshot");
 	}
 };
+game.setGameviewHandler(gvHandler);
 function copyToClipboard(val){
 	var t=document.createElement("textarea");
 	document.body.appendChild(t);
@@ -464,13 +491,12 @@ function copyToClipboard(val){
 	t.select();
 	document.execCommand('copy');
 	document.body.removeChild(t)
-}
-game.setGameviewHandler(gvHandler);
-function download_png(renderer, sprite, fileName) {
-	renderer.extract.canvas(sprite).toBlob(function(b){
+};
+function download_png(renderer,sprite,fileName){
+	renderer.extract.canvas(sprite).toBlob(b=>{
 		var a=document.createElement("a");
 		document.body.append(a);
 		a.download=fileName+".png",a.href=URL.createObjectURL(b);
-		;a.click(),a.remove()
+		a.click(),a.remove();
 	},"image/png");
 };
