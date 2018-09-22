@@ -1,40 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<title>36베이스 - 소녀전선 숙소/치비 SD시뮬레이터</title>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/css.css">
-<!-- 36Base 용 Original Source -->
-	<link href="../../data/img/g36/32bnonclear.png" rel="apple-touch-icon" />
-    <link href="../../data/img/g36/128bnonclear.png" rel="apple-touch-icon" sizes="128x128" />
-    <link href="../../data/img/g36/256bnonclear.png" rel="apple-touch-icon" sizes="256x256" />
-    <link href="../../data/img/g36/256bnonclear.png" rel="icon" sizes="256x256" />
-    <link href="../../data/img/g36/128bnonclear.png" rel="icon" sizes="128x128" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../data/img/g36/32bnonclear.png">
-<!-- 36Base 용 Original Source -->
-
+<meta charset="UTF-8">
+<title>Girls' FrontLine  SD Simulator</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/css.css">
 <meta name="keywords" content="소녀전선,소전,GLF,girls'frontline,db,database,디비,데이터베이스,시뮬레이터,simulator">
-<meta property="og:title" content="36베이스 - 소녀전선 숙소/치비 SD시뮬레이터">
+<meta property="og:title" content="Girls' FrontLine SD Simulator">
 <meta property="og:type" content="website">
-<meta property="og:description" content="36베이스 - 소녀전선 숙소/치비 SD시뮬레이터">
+<meta property="og:description" content="Girls' FrontLine SD Simulator">
 <!-- IE alert -->
 <script>
 var userAgent = navigator.userAgent.toLowerCase(); //빠른 구별 위해 소문자로만 출력
 //document.write(userAgent);
 if(userAgent.indexOf('trident')>-1){alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge, Google Chrome, Mozilla Firefox 를 이용해 주세요.")};
 </script>
-
-<!-- EXIT alert -->
-<script>
-window.onbeforeunload = function(e) {
-        return "사이트에서 나가시겠습니까?\n변경사항이 저장되지 않습니다.";
-</script>
-
 </head>
 <body>
 <div class="Container p-0 mx-auto row">
-<header class="mx-auto my-3 d-none d-md-block"><h2>소녀전선 숙소/치비 SD시뮬레이터</h2></header>
+<header class="mx-auto my-3 d-none d-md-block"><h2>Girls' FrontLine SD Simulator</h2></header>
 <nav class="controlUi my-3 my-md-1 row no-gutters col-12 p-0">
 <div class="preCanvas Canvas col-4"></div>
 <div class="preUI mx-3 col">
@@ -100,10 +84,7 @@ window.onbeforeunload = function(e) {
 <button type="button" class="btn btn-secondary gameRemoveAllRole">인형 모두제거</button>
 <button type="button" class="btn btn-secondary gameStopRole">인형 모션정지</button>
 <button type="button" class="btn btn-primary gameSavePng">이미지 저장하기</button>
-<!--
-개선 작업 예정 2018.09.21
 <button type="button" class="btn btn-primary gameSaveStage">주소 복사</button>
--->
 </div>
 </nav>
 <img id="saveImage" width="100%">
