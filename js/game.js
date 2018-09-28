@@ -1,4 +1,7 @@
-$(document).ready(function(){game.init()});
+$(document).ready(
+	$("footer>p").addClass("text-muted");
+	function(){game.init()};
+);
 if(typeof resPasePath==='undefined'){var resPasePath=''};
 var game={
 	init:function(){
