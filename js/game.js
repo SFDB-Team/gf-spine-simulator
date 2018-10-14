@@ -6,7 +6,7 @@ if(typeof resPasePath==='undefined'){var resPasePath=''};
 var game={
 	init:function(){
 		game.girls=new Girls(resPasePath+"character/");
-		game.background=["Airport","Bridge","Forest","IceLake","Snow","Street","MindMap","MindMap2"];
+		game.background="Airport Bridge Forest IceLake Snow Street MindMap MindMap2".split(" ");
 		preview.init();
 		gameview.init();
 		var stageLoaded=false;
@@ -48,8 +48,14 @@ var preview={
 			var type=$(':selected',this).parent().attr('label');
 			var strSkinsOption="";
 			if(!girlsData[name]){return};
-			for(var skin in girlsData[name]){
-				strSkinsOption+="<option value=\""+skin+"\">"+skin+"</option>";
+			for(skin in girlsData[name]){
+				var skinName=skin;
+				skin.indexOf("R")==0?
+					skin=="Ribeyrolles"?skinName="리베롤":
+					skin=="RaidenMei"?skinName="라이덴 메이":
+					skin=="Ripper"?skinName="리퍼":
+					skinName="숙소 "+skin:skinName=skin;
+				strSkinsOption+=`<option value="${skin}">${skinName}</option>`;
 			}
 			preview.selectSkin.html(strSkinsOption);
 			preview.selectSkin.change();
@@ -87,50 +93,51 @@ var preview={
 			preview.spine.scale.x=preview.selectScale;
 		preview.spine.scale.y=preview.selectScale;
 		var animations=preview.spine.spineData.animations;
-		var aniName=animations;
 		var stringAnimations="";
-		var anilength=animations.length;
 		var n,nowSkin=0;
-		for(var i=0;i<anilength;i++){
-			aniName[i].name=="attack"?aniName[i].name="공격":
-			aniName[i].name=="attack2"?aniName[i].name="보조공격":
-			aniName[i].name=="spattack"?aniName[i].name="스킬":
-			aniName[i].name=="bossskill"?aniName[i].name="스킬":
-			aniName[i].name=="bossskillactive"?aniName[i].name="스킬발동":
-			aniName[i].name=="s"?aniName[i].name="스킬":
-			aniName[i].name=="sp"?aniName[i].name="스킬":
-			aniName[i].name=="sp1"?aniName[i].name="특수행동1":
-			aniName[i].name=="reload"?aniName[i].name="재장전":
-			aniName[i].name=="victory"?aniName[i].name="승리":
-			aniName[i].name=="victory2"?aniName[i].name="승리2":
-			aniName[i].name=="victoryloop"?aniName[i].name="승리Loop":
-			aniName[i].name=="die"?aniName[i].name="사망":
-			aniName[i].name=="die2"?aniName[i].name="사망2":
-			aniName[i].name=="die3"?aniName[i].name="사망3":
-			aniName[i].name=="move"?aniName[i].name="이동":
-			aniName[i].name=="wait"?aniName[i].name="대기":
-			aniName[i].name=="wait2"?aniName[i].name="대기2":
-			aniName[i].name=="wait22"?aniName[i].name="대기22":
-			aniName[i].name=="lying"?aniName[i].name="휴식":
-			aniName[i].name=="sit"?aniName[i].name="착석":
-			aniName[i].name=="pick"?aniName[i].name="들어올리기":
-			aniName[i].name=="work1"?aniName[i].name="행동1":
-			aniName[i].name=="work2"?aniName[i].name="행동2":
-			aniName[i].name=="action"?aniName[i].name="행동":
-			aniName[i].name=="action1"?aniName[i].name="행동1":
-			aniName[i].name=="action2"?aniName[i].name="행동2":
-			aniName[i].name=="action3"?aniName[i].name="행동3":
-			aniName[i].name=="dance1"?aniName[i].name="춤1":
-			aniName[i].name=="dance2"?aniName[i].name="춤2":
-			aniName[i].name=="dance3"?aniName[i].name="춤3":
-			aniName[i].name=="change1"?aniName[i].name="변화1":
-			aniName[i].name=="change2"?aniName[i].name="변화2":
-			aniName[i].name=="change3"?aniName[i].name="변화3":
-			aniName[i].name=aniName[i].name
-		}
-		for(var i=0;i<anilength;i++){stringAnimations+="<option value=\""+animations[i].name+"\">"+aniName[i].name+"</option>"}
+		for(i in animations){
+			animations[i].name=="attack"?animations[i].name="공격":
+			animations[i].name=="attack2"?animations[i].name="보조공격":
+			animations[i].name=="spattack"?animations[i].name="스킬":
+			animations[i].name=="bossskill"?animations[i].name="스킬":
+			animations[i].name=="bossskillactive"?animations[i].name="스킬발동":
+			animations[i].name=="s"?animations[i].name="스킬":
+			animations[i].name=="sp"?animations[i].name="스킬":
+			animations[i].name=="sp1"?animations[i].name="특수행동1":
+			animations[i].name=="reload"?animations[i].name="재장전":
+			animations[i].name=="victory"?animations[i].name="승리":
+			animations[i].name=="victory2"?animations[i].name="승리2":
+			animations[i].name=="victoryloop"?animations[i].name="승리Loop":
+			animations[i].name=="die"?animations[i].name="사망":
+			animations[i].name=="die2"?animations[i].name="사망2":
+			animations[i].name=="die3"?animations[i].name="사망3":
+			animations[i].name=="move"?animations[i].name="이동":
+			animations[i].name=="wait"?animations[i].name="대기":
+			animations[i].name=="wait2"?animations[i].name="대기2":
+			animations[i].name=="wait22"?animations[i].name="대기22":
+			animations[i].name=="lying"?animations[i].name="휴식":
+			animations[i].name=="sit"?animations[i].name="착석":
+			animations[i].name=="pick"?animations[i].name="들어올리기":
+			animations[i].name=="work1"?animations[i].name="행동1":
+			animations[i].name=="work2"?animations[i].name="행동2":
+			animations[i].name=="action"?animations[i].name="행동":
+			animations[i].name=="action1"?animations[i].name="행동1":
+			animations[i].name=="action2"?animations[i].name="행동2":
+			animations[i].name=="action3"?animations[i].name="행동3":
+			animations[i].name=="dance1"?animations[i].name="춤1":
+			animations[i].name=="dance2"?animations[i].name="춤2":
+			animations[i].name=="dance3"?animations[i].name="춤3":
+			animations[i].name=="change1"?animations[i].name="변화1":
+			animations[i].name=="change2"?animations[i].name="변화2":
+			animations[i].name=="change3"?animations[i].name="변화3":
+			animations[i].name=animations[i].name
+			if(animations[i].name=="animation"){
+				continue
+			}
+			stringAnimations+="<option value=\""+animations[i].name+"\">"+animations[i].name+"</option>"
+		};
 		preview.selectAnimation.html(stringAnimations);
-		preview.changeAnimation(0);
+		animations[0].name=="animation"?preview.changeAnimation(1):preview.changeAnimation(0);
 		preview.spine.skeleton.setToSetupPose();
 		preview.spine.update(0);
 		preview.spine.autoUpdate=false;
@@ -228,10 +235,10 @@ var gameview={
 			gameview.selectscale.val(Math.abs(role.scale.x)*1000);
 			gameview.focusRole=role;
 			var stringAnimations="";
-			for(var i=0;i<role.spineData.animations.length;i++){
+			for(i in role.spineData.animations.length){
 				var defaultAnimation="";
 				if(role.animation==role.spineData.animations[i].name){defaultAnimation=" selected"}
-				stringAnimations+="<option"+defaultAnimation+">"+role.spineData.animations[i].name+"</option>";
+				stringAnimations+=`<option ${defaultAnimation}>${role.spineData.animations[i].name}</option>`;
 			}
 			gameview.selectAnimation.html(stringAnimations)
 			if(timeVal[this.selectedIndex-1]==0){
@@ -366,8 +373,8 @@ var gameview={
 				defaultAnimation=" selected";
 				defaultAnimationId=i;
 			}
-			var aniName=role.spineData.animations[i].name;
-			stringAnimations+="<option"+defaultAnimation+">"+aniName+"</option>"
+			var animations=role.spineData.animations[i].name;
+			stringAnimations+="<option"+defaultAnimation+">"+animations+"</option>"
 		}
 		gameview.selectAnimation.html(stringAnimations);
 		gameview.changeAnimation(defaultAnimationId);
