@@ -459,10 +459,10 @@ SkeletonBinary.prototype={
 						else
 							timeline[frameIndex].y=tlflip;
 					}
-					if(timelineType ==5){
-						boneMap.flipXtimeline;
+					if(timelineType==5){
+						boneMap.flipX=timeline;
 					}else{
-						boneMap.flipYtimeline;
+						boneMap.flipY=timeline;
 					}
 					duration=Math.max(duration,timeline[frameCount-1].time);
 					break;

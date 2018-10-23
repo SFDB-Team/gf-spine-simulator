@@ -62,7 +62,13 @@ var preview={
 			preview.stage.interactive=true
 		});
 		preview.selectSkin.change(function(){game.girls.load(preview.selectCharacter.val(),preview.selectSkin.val(),preview)});
-		preview.selectAnimation.change(function(){preview.changeAnimation(this.selectedIndex)});
+		preview.selectAnimation.change(function(){
+				if(preview.skeletonData.animations[0].name=="animation"){
+					preview.changeAnimation(this.selectedIndex+1)
+				}else{
+					preview.changeAnimation(this.selectedIndex)
+				}
+			});
 		preview.addRole.click(function(){if(preview.skeletonData){gameview.addRole(preview.skeletonData,preview.selectAnimation.val())}});
 		preview.stopRole.click(function(){
 			if(preview.isUpdate){
