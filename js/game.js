@@ -47,7 +47,7 @@ var preview={
 		preview.selectCharacter.addEventListener("change",function(){
 			if(this.selectedIndex==0) return;
 			var name=this.value,strSkinsOption="";
-			girlsData[name]||return;
+			if(!girlsData[name]) return;
 			for(skin in girlsData[name]){
 				var skinName=skin;
 				"r"!=skin.replace(name,"").slice(0,1)&&"R"!=skin.replace(name,"").slice(0,1)||(skinName="숙소 "+skin.slice(1));

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>36베이스 - 소녀전선 숙소/치비 SD시뮬레이터</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/css.css">
 <!-- 36Base 용 Original Source -->
 <link href="../../data/img/g36/32bnonclear.png" rel="apple-touch-icon" />
@@ -26,9 +26,7 @@ var userAgent = navigator.userAgent.toLowerCase(); //빠른 구별 위해 소문
 if(userAgent.indexOf('trident')>-1){alert("Internet Explorer 는 WebGL을 지원하지 않습니다.\nMicrosoft Edge, Google Chrome, Mozilla Firefox 를 이용해 주세요.")};
 </script>
 <!-- EXIT alert -->
-<script>
-window.onbeforeunload=function(e){return "사이트에서 나가시겠습니까?\n변경사항이 저장되지 않습니다.";
-</script>
+<script>window.onbeforeunload=e=>"사이트에서 나가시겠습니까?\n변경사항이 저장되지 않습니다."</script>
 </head>
 <body>
 <div class="Container p-0 mx-auto row no-gutters">
@@ -41,7 +39,7 @@ window.onbeforeunload=function(e){return "사이트에서 나가시겠습니까?
 <select class="custom-select"></select>
 </div>
 <div class="form-group preSelectSkin">
-<label>스킨<small class="text-muted">(R : 숙소 모델링)</small></label>
+<label>스킨</label>
 <select class="custom-select"></select>
 </div>
 <div class="form-group preSelectAnimation">
@@ -112,7 +110,7 @@ window.onbeforeunload=function(e){return "사이트에서 나가시겠습니까?
 </footer>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pixi.js@4.8.5/dist/pixi.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pixi-spine@1.0.10/bin/pixi-spine.min.js"></script>
 <script src="js/girlsData.js"></script>
