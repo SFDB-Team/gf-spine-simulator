@@ -1986,8 +1986,8 @@ var girlsData = {
 		"ZastavaM21_2104":[],
 		"RZastavaM21_2104":[],
 	}
-};
-var girlsOptions = {
+},
+girlsOptions = {
 	"HG":{
 		"59type":"59식",
 		"92type":"92식",
@@ -2321,8 +2321,8 @@ var girlsOptions = {
 		"pet":"pet",
 		"tanuki":"tanuki"
 	}
-};
-var girlsDataKr={
+},
+girlsDataKr = {
 	"aegis":"철혈 장갑 인형병",
 	"Brute":"브루트",
 	"DestroyerPlus":"디스트로이어 엘리트 소체",
